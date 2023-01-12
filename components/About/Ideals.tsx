@@ -28,7 +28,7 @@ const Ideals = (props: Props) => {
   ));
 
   return (
-    <Row xs={1} md={3} className={`${classes.ideals} py-5`}>
+    <Row xs={1} md={3} className={`${classes.ideals}`}>
       {renderIdeals}
     </Row>
   );

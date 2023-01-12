@@ -50,9 +50,14 @@
 
 .ideals {
   background-color: var(--clr-secondary);
-  box-shadow: 0 0 0 100vmax var(--clr-secondary);
-  clip-path: inset(0 -100vmax);
   margin-bottom: 6rem;
+  padding: 2.5rem 1rem;
+  border-radius: 1rem;
+}
+@media screen and (min-width: 1110px) {
+  .ideals {
+    padding: 4.4rem 3rem;
+  }
 }
 
 .team {

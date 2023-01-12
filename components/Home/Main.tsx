@@ -20,6 +20,17 @@ const cardAndImageIcons = [
   "/images/home-present.svg",
 ];
 
+const linksPart2 = [
+  {
+    href: "/solutions",
+    cta: "find-out-more",
+  },
+  {
+    href: "/contact",
+    cta: "contact-us",
+  },
+];
+
 const Main = () => {
   const t = useTranslation();
   const content = useHomeContext();
@@ -51,8 +62,11 @@ const Main = () => {
                 dir={idx % 2 === 0 ? "text-left" : "text-right"}
               >
                 <p className="mb-4">{card?.content}</p>
-                <Button img="/images/arrow-right.svg" href="/solutions">
-                  {t("cta.our-services")}
+                <Button
+                  img="/images/arrow-right.svg"
+                  href={linksPart2[idx].href}
+                >
+                  {t(`cta.${linksPart2[idx].cta}`)}
                 </Button>
               </CardAndImage>
             </AnimateOnView>
