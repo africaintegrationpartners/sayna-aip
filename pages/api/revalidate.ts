@@ -1,17 +1,38 @@
+import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { NextApiRequest, NextApiResponse } from "next";
+
+const SANITY_WEBHOOK_SECRET = process.env.SANITY_WEBHOOK_SECRET + "";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.query.secret !== process.env.REVALIDATE_TOKEN) {
-    return res.status(401).json({ message: "Invalid token" });
+  const signature = req.headers[SIGNATURE_HEADER_NAME] + "";
+  const isValid = isValidSignature(
+    JSON.stringify(req.body),
+    signature,
+    SANITY_WEBHOOK_SECRET
+  );
+
+  console.log(`===== Is the webhook request valid? ${isValid}`);
+
+  // Validate signature
+  if (!isValid) {
+    res.status(401).json({ success: false, message: "Invalid signature" });
+    return;
   }
 
   try {
-    await res.revalidate(req.query.path as string);
+    const pathToRevalidate = req.body._type;
+
+    console.log(`===== Revalidating: ${pathToRevalidate}`);
+
+    await res.revalidate(pathToRevalidate);
+
     return res.json({ revalidated: true });
   } catch (err) {
-    return res.status(500).send("Error revalidating");
+    // Could not revalidate. The stale page will continue to be shown until
+    // this issue is fixed.
+    return res.status(500).send("Error while revalidating");
   }
 }
