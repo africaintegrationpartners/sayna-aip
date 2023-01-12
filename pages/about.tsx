@@ -1,14 +1,13 @@
 import type { GetStaticProps, NextPage } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import { createContext, useContext } from "react";
 import AboutComponent from "../components/About";
+import { AboutContextProvider } from "../contexts/about";
 import { useTranslation } from "../hooks";
-import api from "../services/apiService";
+import { getAboutContent } from "../services/about";
+import { withGetStaticProps } from "../services/utils";
+import { AboutContent, PageProps } from "../types";
 
-export const ContentContext = createContext({});
-
-const About: NextPage = (props: any) => {
+const About: NextPage<PageProps<AboutContent>> = (props) => {
   const t = useTranslation();
 
   return (
@@ -18,30 +17,15 @@ const About: NextPage = (props: any) => {
         <meta name="description" content={t("meta.description_about")} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ContentContext.Provider value={props["data"]}>
+      <AboutContextProvider value={props.data}>
         <AboutComponent />
-      </ContentContext.Provider>
+      </AboutContextProvider>
     </div>
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale = "fr" } = context;
-
-  const localizedData = await serverSideTranslations(locale, ["common"]);
-
-  const aboutContentRes = await api.get<any>(
-    `/about?populate=deep&locale=${locale}`
-  );
-
-  const aboutContent = aboutContentRes.data?.data?.attributes;
-
-  return {
-    props: {
-      ...localizedData,
-      data: aboutContent,
-    },
-  };
+export const getStaticProps: GetStaticProps = (context) => {
+  return withGetStaticProps(context, getAboutContent);
 };
 
 export default About;

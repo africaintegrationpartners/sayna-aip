@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { Container } from "react-bootstrap";
-import { ContentContext } from "../../pages/about";
+import { useAboutContext } from "../../contexts/about";
 import AnimateOnView from "../ui/AnimateOnView";
 import PageSectionTitle from "../ui/PageSectionTitle";
 import AboutTexts from "./AboutTexts";
@@ -15,12 +14,12 @@ const icons = [
 ];
 
 const About = () => {
-  const content: any = useContext(ContentContext);
+  const content = useAboutContext();
 
-  const ideals = content?.ideal?.map((item: any, idx: number) => {
+  const ideals = content.ideals?.map((item, idx) => {
     return {
-      title: item?.title as string,
-      body: item?.body as string,
+      title: item?.heading,
+      body: item?.content,
       icon: icons[idx],
     } as Ideal;
   });
@@ -29,25 +28,25 @@ const About = () => {
     <Container className={classes.container}>
       <AnimateOnView>
         <PageSectionTitle
-          title={content?.page_section_heading_1?.title}
-          subtitle={content?.page_section_heading_1?.subtitle}
+          title={content?.intro?.heading ?? ""}
+          subtitle={content?.intro?.content ?? ""}
         />
       </AnimateOnView>
 
       <AnimateOnView amount={0.3}>
-        <Ideals ideals={ideals} />
+        <Ideals ideals={ideals ?? []} />
       </AnimateOnView>
 
       <AboutTexts />
 
-      <AnimateOnView>
+      {/* <AnimateOnView>
         <PageSectionTitle
           title={content?.page_section_heading_2?.title}
           subtitle={content?.page_section_heading_2?.subtitle}
         />
       </AnimateOnView>
 
-      <Teams />
+      <Teams /> */}
     </Container>
   );
 };
