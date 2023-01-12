@@ -9,7 +9,7 @@ const PageSectionTitle = (props: Props) => {
 
   return (
     <section className={classes.textWrapper + " mb-5 pb-4 text-center"}>
-      <h2 className="mb-4 h3">{title}</h2>
+      <h2 className="mb-4 h4">{title}</h2>
       <p>{subtitle}</p>
     </section>
   );

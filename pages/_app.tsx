@@ -8,8 +8,8 @@ import { SSRProvider } from "react-bootstrap";
 import Layout from "../components/Layout";
 
 // i18n
-
 import { appWithTranslation } from "next-i18next";
+import nextI18NextConfig from "../next-i18next.config.js";
 
 // progress
 import "../setup/progress/style.css";
@@ -34,4 +34,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default appWithTranslation(MyApp);
+export default appWithTranslation(MyApp, nextI18NextConfig);

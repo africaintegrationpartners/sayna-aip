@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  query getAboutContent {\n    data: allAbout {\n      _id\n      intro: part_1 {\n        heading\n        content\n      }\n      ideals: part_3 {\n        heading\n        content\n      }\n      services: about_services {\n        heading\n        content\n      }\n    }\n  }\n": types.GetAboutContentDocument,
     "\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n": types.GetHomeContentDocument,
+    "\n  query getSolutionsContent {\n    data: allSolutions {\n      _id\n      solutions_heading {\n        heading\n        content\n      }\n      solutions_services {\n        heading\n        content\n      }\n      solutions_sectors\n    }\n  }\n": types.GetSolutionsContentDocument,
 };
 
 /**
@@ -39,6 +40,10 @@ export function graphql(source: "\n  query getAboutContent {\n    data: allAbout
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n"): (typeof documents)["\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query getSolutionsContent {\n    data: allSolutions {\n      _id\n      solutions_heading {\n        heading\n        content\n      }\n      solutions_services {\n        heading\n        content\n      }\n      solutions_sectors\n    }\n  }\n"): (typeof documents)["\n  query getSolutionsContent {\n    data: allSolutions {\n      _id\n      solutions_heading {\n        heading\n        content\n      }\n      solutions_services {\n        heading\n        content\n      }\n      solutions_sectors\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

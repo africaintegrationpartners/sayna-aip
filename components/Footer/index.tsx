@@ -80,7 +80,7 @@ const Footer = () => {
         <div className={classes.legal + " text-center pt-5"}>
           <span>
             &copy; Copyright {new Date().getFullYear()} Africa Integration
-            Partner
+            Partners
           </span>
           {" | "}
           <Link className="text-decoration-underline">

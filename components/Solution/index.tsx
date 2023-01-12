@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Fragment, useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { ContentContext } from "../../pages/solutions";
+import { useSolutionsContext } from "../../contexts/solutions";
+import { useTranslation } from "../../hooks";
 import AnimateOnView from "../ui/AnimateOnView";
 import CardAndImage from "../ui/CardAndImage";
 import PageSectionTitle from "../ui/PageSectionTitle";
@@ -13,20 +13,29 @@ const solutionIcons = [
   "/images/finance.svg",
 ];
 
+const sectorIcons = [
+  "/images/tech.svg",
+  "/images/energy.svg",
+  "/images/agriculture.svg",
+  "/images/transport.svg",
+  "/images/real-estate.svg",
+  "/images/industry.svg",
+];
+
 const Solution = () => {
-  const content: any = useContext(ContentContext);
-  const solutions = content?.card_and_image;
+  const t = useTranslation();
 
-  console.log({ content });
+  const content = useSolutionsContext();
+  const solutions = content?.solutions_services;
 
-  const renderSolutions = solutions.map((solution: any, idx: number) => (
-    <AnimateOnView key={solution.title} amount={0.3}>
+  const renderSolutions = solutions?.map((solution, idx) => (
+    <AnimateOnView key={solution?.heading} amount={0.3}>
       <CardAndImage
         img={solutionIcons[idx % solutionIcons.length]}
-        title={solution.title}
+        title={solution?.heading ?? ""}
         dir={idx % 2 === 0 ? "text-left" : "text-right"}
       >
-        {solution.content?.split(/\n/).map((para: any, idx: any) => (
+        {solution?.content?.split(/\n+/).map((para: any, idx: any) => (
           <p key={idx} className="mb-0">
             {para}
           </p>
@@ -35,16 +44,11 @@ const Solution = () => {
     </AnimateOnView>
   ));
 
-  const renderSectors = content?.sector?.map((sector: any) => (
-    <Col key={sector.title} className="px-5 mb-5">
+  const renderSectors = content?.solutions_sectors?.map((sector, idx) => (
+    <Col key={sector} className="px-5 mb-5">
       <AnimateOnView>
-        <Image
-          src={sector.image?.data?.attributes?.url}
-          width="60"
-          height="60"
-          alt={sector.description}
-        />
-        <p className="pt-2 lead">{sector.description}</p>
+        <Image src={sectorIcons[idx]} width="60" height="60" alt={""} />
+        <p className="pt-2 lead">{sector}</p>
       </AnimateOnView>
     </Col>
   ));
@@ -53,19 +57,15 @@ const Solution = () => {
     <Container className={classes.container}>
       <AnimateOnView>
         <PageSectionTitle
-          title={content?.page_section_heading_1?.title}
-          subtitle={content?.page_section_heading_1?.subtitle}
+          title={content?.solutions_heading?.heading ?? ""}
+          subtitle={content?.solutions_heading?.content ?? ""}
         />
       </AnimateOnView>
       <div className={classes.allSolutions + " d-flex flex-column"}>
         {renderSolutions}
       </div>
       <AnimateOnView>
-        <PageSectionTitle
-          // TODO: fix the schema for it in strapi
-          title={content?.page_section_heading_2?.[0]?.title}
-          subtitle={content?.page_section_heading_2?.[0]?.subtitle}
-        />
+        <PageSectionTitle title={t("solutions.sectors")} subtitle={""} />
       </AnimateOnView>
       <Row xs="1" md="2" lg="3" className={classes.sectors + " mb-5"}>
         {renderSectors}

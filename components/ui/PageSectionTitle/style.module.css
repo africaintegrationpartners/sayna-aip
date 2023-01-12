@@ -3,10 +3,13 @@
   margin: 0 auto;
 }
 .textWrapper h2 {
+  width: fit-content;
   max-width: 600px;
   position: relative;
   margin: 0 auto;
   text-transform: uppercase;
+  /* font-family: "Brygada", serif; */
+  font-weight: 600;
 }
 .textWrapper h2::after {
   content: "";

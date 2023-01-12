@@ -4,6 +4,7 @@ import { ReactElement } from "react";
 import {
   GetAboutContentQuery,
   GetHomeContentQuery,
+  GetSolutionsContentQuery,
 } from "../generated/graphql";
 
 export type PageProps<T> = SSRConfig & { data: T };
@@ -13,6 +14,7 @@ export type Unpacked<T> = T extends (infer U)[] ? U : T;
 // Page content from CMS
 export type HomeContent = Unpacked<GetHomeContentQuery["data"]>;
 export type AboutContent = Unpacked<GetAboutContentQuery["data"]>;
+export type SolutionsContent = Unpacked<GetSolutionsContentQuery["data"]>;
 
 export type Maybe<T> = T | null | undefined;
 

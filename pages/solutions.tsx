@@ -1,17 +1,14 @@
 import type { GetStaticProps, NextPage } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import { createContext } from "react";
 import SolutionComponent from "../components/Solution";
+import { SolutionsContextProvider } from "../contexts/solutions";
 import { useTranslation } from "../hooks";
-import api from "../services/apiService";
+import { getSolutionsContent } from "../services/solutions";
+import { withGetStaticProps } from "../services/utils";
+import { PageProps, SolutionsContent } from "../types";
 
-export const ContentContext = createContext({});
-
-const Solution: NextPage = (props: any) => {
+const Solution: NextPage<PageProps<SolutionsContent>> = (props) => {
   const t = useTranslation();
-
-  console.log(props["data"]);
 
   return (
     <div>
@@ -20,29 +17,15 @@ const Solution: NextPage = (props: any) => {
         <meta name="description" content={t("meta.description_solutions")} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ContentContext.Provider value={props["data"]}>
+      <SolutionsContextProvider value={props.data}>
         <SolutionComponent />
-      </ContentContext.Provider>
+      </SolutionsContextProvider>
     </div>
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale = "fr" } = context;
-
-  const localizedData = await serverSideTranslations(locale, ["common"]);
-  const solutionContentRes = await api.get<any>(
-    `/solution?populate=deep&locale=${locale}`
-  );
-
-  const solutionContent = solutionContentRes.data?.data?.attributes;
-
-  return {
-    props: {
-      ...localizedData,
-      data: solutionContent,
-    },
-  };
+export const getStaticProps: GetStaticProps = (context) => {
+  return withGetStaticProps(context, getSolutionsContent);
 };
 
 export default Solution;
