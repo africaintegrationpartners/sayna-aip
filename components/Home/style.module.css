@@ -1,6 +1,13 @@
 .header {
   position: relative;
   padding-block: 12rem;
+  background-image: url("/images/home_bg.jpg");
+  background-size: cover;
+  background-position: center calc(50px + 1.5rem);
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.562);
+  background-blend-mode: overlay;
+  margin-bottom: 8rem;
 }
 
 .bg {
@@ -21,26 +28,30 @@
 }
 
 .pageTitle h1 {
-  max-width: 945px;
   font-family: "Brygada", serif;
   font-size: 2rem;
   line-height: 1;
-  color: #173141;
+  color: #ffffff;
+  max-width: 650px;
 }
 .pageTitle h2 {
   font-family: "Brygada", serif;
   font-style: italic;
-  color: #173141;
+  color: #f3f3f3;
   font-size: 1.2rem;
 }
 
 @media screen and (min-width: 567px) {
   .pageTitle h1 {
-    max-width: 945px;
     font-family: "Brygada", serif;
-    font-size: 3.2rem;
+    font-size: 2.3rem;
     line-height: 1;
-    color: #173141;
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .pageTitle h1 {
+    font-size: 3.2rem;
   }
 }
 
