@@ -3,7 +3,7 @@
   margin: 0 auto;
 }
 .textWrapper h2 {
-  width: max-content;
+  max-width: 600px;
   position: relative;
   margin: 0 auto;
   text-transform: uppercase;

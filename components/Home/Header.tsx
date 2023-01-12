@@ -1,13 +1,13 @@
 import classes from "./style.module.css";
 import Button from "../ui/Button";
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import { useTranslation } from "../../hooks";
-import { ContentContext } from "../../pages";
+import { useHomeContext } from "../../contexts/home";
 
 const Header = () => {
   const questionEltRef = useRef<HTMLSpanElement | null>(null);
-  const content: any = useContext(ContentContext);
+  const content = useHomeContext();
 
   const t = useTranslation();
 
@@ -16,7 +16,8 @@ const Header = () => {
     if (!headingElt) return;
 
     const typed = new Typed(headingElt, {
-      strings: content?.header?.questions?.map((q: any) => q.content),
+      strings:
+        content.home__header?.hero_questions?.map((val) => val ?? "") || [],
       typeSpeed: 40,
       backSpeed: 50,
       loop: true,
@@ -27,7 +28,7 @@ const Header = () => {
     });
 
     return () => typed.destroy();
-  }, [content?.header?.questions]);
+  }, [content.home__header?.hero_questions]);
 
   return (
     <header
@@ -38,7 +39,7 @@ const Header = () => {
           <span ref={questionEltRef}></span>
         </h2>
 
-        <h1 className="mb-5">{content?.header?.title}</h1>
+        <h1 className="mb-5">{content?.home__header?.hero}</h1>
 
         <Button img="/images/arrow-right.svg" href="/solutions">
           {t("cta.our-services")}

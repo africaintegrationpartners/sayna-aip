@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "\n  query getHomeContent {\n    allHome {\n      _id\n      home__header {\n        hero\n      }\n    }\n  }\n": types.GetHomeContentDocument,
+    "\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n": types.GetHomeContentDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query getHomeContent {\n    allHome {\n      _id\n      home__header {\n        hero\n      }\n    }\n  }\n"): (typeof documents)["\n  query getHomeContent {\n    allHome {\n      _id\n      home__header {\n        hero\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n"): (typeof documents)["\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

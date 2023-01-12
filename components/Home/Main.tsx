@@ -4,12 +4,10 @@ import Button from "../ui/Button";
 import CardAndImage from "../ui/CardAndImage";
 import PageSectionTitle from "../ui/PageSectionTitle";
 import Ideals, { Ideal } from "../About/Ideals";
-import Blogs from "../Stories/Blogs";
 
 import AnimateOnView from "../ui/AnimateOnView";
 import { useTranslation } from "../../hooks";
-import { useContext } from "react";
-import { ContentContext } from "../../pages";
+import { useHomeContext } from "../../contexts/home";
 
 const icons = [
   "/images/vision.svg",
@@ -24,12 +22,12 @@ const cardAndImageIcons = [
 
 const Main = () => {
   const t = useTranslation();
-  const content: any = useContext(ContentContext);
+  const content = useHomeContext();
 
-  const ideals = content?.ideal?.map((item: any, idx: number) => {
+  const ideals = content.part_3?.map((item, idx) => {
     return {
-      title: item?.title as string,
-      body: item?.body as string,
+      title: item?.heading,
+      body: item?.content,
       icon: icons[idx],
     } as Ideal;
   });
@@ -39,16 +37,16 @@ const Main = () => {
       <Container>
         <AnimateOnView>
           <PageSectionTitle
-            title={content?.page_section_heading_1?.title}
-            subtitle={content?.page_section_heading_1?.subtitle}
+            title={content?.part_1?.heading ?? ""}
+            subtitle={content?.part_1?.content ?? ""}
           />
         </AnimateOnView>
 
         <div className={classes.propositions + " d-flex flex-column"}>
-          {content?.card_and_image?.map((card: any, idx: number) => (
-            <AnimateOnView amount={0.6} key={card?.id}>
+          {content?.part_2?.map((card, idx) => (
+            <AnimateOnView amount={0.6} key={idx}>
               <CardAndImage
-                title={card?.title}
+                title={card?.heading ?? ""}
                 img={cardAndImageIcons[idx % cardAndImageIcons.length]}
                 dir={idx % 2 === 0 ? "text-left" : "text-right"}
               >
@@ -62,22 +60,22 @@ const Main = () => {
         </div>
 
         <AnimateOnView amount={0.3}>
-          <Ideals ideals={ideals} />
+          <Ideals ideals={ideals ?? []} />
         </AnimateOnView>
 
         <AnimateOnView>
           <PageSectionTitle
-            title={content?.page_section_heading_2?.title}
-            subtitle={content?.page_section_heading_2?.subtitle}
+            title={content?.part_4?.heading ?? ""}
+            subtitle={content?.part_4?.content ?? ""}
           />
         </AnimateOnView>
         <AnimateOnView amount={0.3}>
-          <Row xs={1} sm={2} md={4} className="text-center mx-auto">
-            {content?.addresses?.address?.map((addr: any) => (
-              <Col className="p-3" key={addr.id}>
+          <Row xs={1} md={3} className="text-center mx-auto">
+            {content?.part_4?.list?.map((addr) => (
+              <Col className="p-3" key={addr}>
                 <div className="border h-100 shadow-sm py-5 px-4">
-                  <h3>{addr?.country}</h3>
-                  <p className="m-0">{addr?.city}</p>
+                  <h3>{addr?.split("=")[0]}</h3>
+                  <p className="m-0">{addr?.split("=")[1]}</p>
                 </div>
               </Col>
             ))}
@@ -90,13 +88,13 @@ const Main = () => {
           </Button>
         </div>
 
-        <Blogs
+        {/* <Blogs
           title={content?.page_section_heading_3?.title}
           blogs={content?.blogs?.map((blog: any) => ({
             ...blog,
             createdAt: new Date(blog.createdAt),
           }))}
-        />
+        /> */}
       </Container>
     </section>
   );
