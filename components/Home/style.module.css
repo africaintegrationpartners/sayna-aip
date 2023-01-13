@@ -1,14 +1,13 @@
 .header {
   position: relative;
   padding-block: 12rem;
-  background-image: url("/images/home_bg.jpg");
+  background-image: url("/images/home_bg.webp");
   background-size: cover;
   background-position: center calc(50px + 1.5rem);
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.562);
   background-blend-mode: overlay;
   margin-bottom: 10rem;
-  border-bottom-left-radius: 2rem;
 }
 
 .bg {

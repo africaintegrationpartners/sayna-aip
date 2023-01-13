@@ -4,14 +4,17 @@
   font-family: "Brygada";
   src: url(/fonts/Brygada-Italic.ttf) format("truetype");
   font-style: italic;
+  font-display: swap;
 }
 @font-face {
   font-family: "Brygada";
   src: url(/fonts/Brygada.ttf) format("truetype");
+  font-display: swap;
 }
 @font-face {
   font-family: "Roboto";
   src: url(/fonts/Roboto.ttf) format("truetype");
+  font-display: swap;
 }
 
 html,

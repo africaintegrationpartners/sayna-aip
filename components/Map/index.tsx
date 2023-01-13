@@ -12,16 +12,16 @@ const icon = new L.Icon({
 type Location = { position: [number, number]; popup: string };
 const locations: Location[] = [
   {
-    position: [6.130146147824744, 1.21965663838397],
+    position: [6.158004, 1.241778],
     popup:
       "Nukafu, Rue en face de la Direction Générale de la SOTRAL, Immeuble MENSANH",
   },
   {
-    position: [5.361751473668265, -3.966645700165504],
+    position: [5.332140697496063, -3.9925339507364472],
     popup: "Cocody Ambassades, A57 Rue du Bélier, Villa COLOMB, Côte d'Ivoire",
   },
   {
-    position: [6.381290106127091, 2.4022043499737644],
+    position: [6.355470152382334, 2.3917929576711128],
     popup: "Cité vie nouvelle, Benin",
   },
 ];

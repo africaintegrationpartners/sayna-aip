@@ -22,7 +22,13 @@ const Ideals = (props: Props) => {
           <Image src={ideal.icon} width="50" height="50" alt={ideal.title} />
           <h3 className="mb-0 h4 text-capitalize">{ideal.title}</h3>
         </div>
-        <p>{ideal.body}</p>
+        <div>
+          {ideal.body.split("<br>").map((val, idx) => (
+            <p key={idx} className="mb-0">
+              {val}
+            </p>
+          ))}
+        </div>
       </article>
     </Col>
   ));

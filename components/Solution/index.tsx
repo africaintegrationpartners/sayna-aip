@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSolutionsContext } from "../../contexts/solutions";
 import { useTranslation } from "../../hooks";
 import AnimateOnView from "../ui/AnimateOnView";
+import Button from "../ui/Button";
 import CardAndImage from "../ui/CardAndImage";
 import PageSectionTitle from "../ui/PageSectionTitle";
 import classes from "./style.module.css";
@@ -40,6 +41,9 @@ const Solution = () => {
             {para}
           </p>
         ))}
+        <Button img="/images/arrow-right.svg" href="/contact" className="mt-4">
+          {t(`cta.find-out-more`)}
+        </Button>
       </CardAndImage>
     </AnimateOnView>
   ));
