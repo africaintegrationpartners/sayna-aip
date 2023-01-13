@@ -4,6 +4,7 @@ import { ReactElement } from "react";
 import {
   GetAboutContentQuery,
   GetHomeContentQuery,
+  GetProgramsContentQuery,
   GetSolutionsContentQuery,
 } from "../generated/graphql";
 
@@ -15,6 +16,7 @@ export type Unpacked<T> = T extends (infer U)[] ? U : T;
 export type HomeContent = Unpacked<GetHomeContentQuery["data"]>;
 export type AboutContent = Unpacked<GetAboutContentQuery["data"]>;
 export type SolutionsContent = Unpacked<GetSolutionsContentQuery["data"]>;
+export type ProgramsContent = Unpacked<GetProgramsContentQuery["data"]>;
 
 export type Maybe<T> = T | null | undefined;
 

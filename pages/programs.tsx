@@ -1,17 +1,14 @@
 import type { GetStaticProps, NextPage } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import { createContext } from "react";
 import ProgramsComponent from "../components/Programs";
+import { ProgramsContextProvider } from "../contexts/programs";
 import { useTranslation } from "../hooks";
-import api from "../services/apiService";
+import { getProgramsContent } from "../services/programs";
+import { withGetStaticProps } from "../services/utils";
+import { PageProps, ProgramsContent } from "../types";
 
-export const ContentContext = createContext({});
-
-const Programs: NextPage = (props: any) => {
+const Programs: NextPage<PageProps<ProgramsContent>> = (props) => {
   const t = useTranslation();
-
-  console.log(props["data"]);
 
   return (
     <div>
@@ -20,30 +17,15 @@ const Programs: NextPage = (props: any) => {
         <meta name="description" content={t("meta.description_programs")} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ContentContext.Provider value={props["data"]}>
+      <ProgramsContextProvider value={props.data}>
         <ProgramsComponent />
-      </ContentContext.Provider>
+      </ProgramsContextProvider>
     </div>
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale = "fr" } = context;
-
-  const localizedData = await serverSideTranslations(locale, ["common"]);
-
-  const programContentRes = await api.get<any>(
-    `/programme?populate=deep&locale=${locale}`
-  );
-
-  const programContent = programContentRes.data?.data?.attributes;
-
-  return {
-    props: {
-      ...localizedData,
-      data: programContent,
-    },
-  };
+export const getStaticProps: GetStaticProps = (context) => {
+  return withGetStaticProps(context, getProgramsContent);
 };
 
 export default Programs;
