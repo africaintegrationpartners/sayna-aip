@@ -39,7 +39,7 @@ const Header = () => {
           <span ref={questionEltRef}></span>
         </h2>
 
-        <h1>{content?.home__header?.hero}</h1>
+        <h1 className="mb-4">{content?.home__header?.hero}</h1>
 
         <Button img="/images/arrow-right.svg" href="/solutions">
           {t("cta.our-services")}

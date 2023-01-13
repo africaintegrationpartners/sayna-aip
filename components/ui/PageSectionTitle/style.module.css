@@ -8,7 +8,6 @@
   position: relative;
   margin: 0 auto;
   text-transform: uppercase;
-  /* font-family: "Brygada", serif; */
   font-weight: 600;
 }
 .textWrapper h2::after {
