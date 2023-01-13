@@ -29,6 +29,18 @@ const FormContact = () => {
       <input type="hidden" name="form-name" value="query" />
 
       <div className="d-flex justify-content-between">
+        <Form.Group className="mb-3" controlId="name" style={{ width: "48%" }}>
+          <Form.Label>Nom</Form.Label>
+          <Form.Control
+            name="nom"
+            type="text"
+            placeholder="Votre nom"
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Veuillez saisir votre nom
+          </Form.Control.Feedback>
+        </Form.Group>
         <Form.Group
           className="mb-3"
           controlId="prénoms"
@@ -45,34 +57,9 @@ const FormContact = () => {
             Veuillez saisir votre prénoms
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group className="mb-3" controlId="name" style={{ width: "48%" }}>
-          <Form.Label>Nom</Form.Label>
-          <Form.Control
-            name="nom"
-            type="text"
-            placeholder="Votre nom"
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Veuillez saisir votre nom
-          </Form.Control.Feedback>
-        </Form.Group>
       </div>
 
       <div className="d-flex justify-content-between">
-        <Form.Group style={{ width: "48%" }} className="mb-3" controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            name="email"
-            type="email"
-            placeholder="Votre email"
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Veuillez saisir votre email
-          </Form.Control.Feedback>
-        </Form.Group>
-
         <Form.Group style={{ width: "48%" }} className="mb-3">
           <Form.Label>Telephone</Form.Label>
           <Form.Control
@@ -83,6 +70,18 @@ const FormContact = () => {
           />
           <Form.Control.Feedback type="invalid">
             Veuillez saisir votre telephone
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group style={{ width: "48%" }} className="mb-3" controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            name="email"
+            type="email"
+            placeholder="Votre email"
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Veuillez saisir votre email
           </Form.Control.Feedback>
         </Form.Group>
       </div>
@@ -102,7 +101,7 @@ const FormContact = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" style={{ width: "48%" }}>
-          <Form.Label>Fonction</Form.Label>
+          <Form.Label>Profil</Form.Label>
           <Form.Select required name="fonction">
             <option></option>
             <option value="bailleur">Bailleur de fonds</option>
@@ -114,6 +113,42 @@ const FormContact = () => {
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             Veuillez choisir votre fonction
+          </Form.Control.Feedback>
+        </Form.Group>
+      </div>
+
+      <div className="d-flex justify-content-between">
+        <Form.Group style={{ width: "48%" }} className="mb-3">
+          <Form.Label>Sujet</Form.Label>
+          <Form.Select required name="sujet">
+            <option></option>
+            <option value=" Jeunes diplômés"> Programmes PME</option>
+            <option value=" Jeunes diplômés">
+              Programmes Jeunes entrepreneurs
+            </option>
+            <option value="Cadres">Programmes Femmes</option>
+            <option value="Cadres">Programmes Insertion Professionnelle</option>
+            <option value="Autres à préciser">Formation</option>
+            <option value="Autres à préciser">Etude</option>
+            <option value="Autres à préciser">Conseil</option>
+            <option value="Autres à préciser">Accompagnement technique</option>
+            <option value="Autres à préciser">Autre Raison</option>
+          </Form.Select>
+          <Form.Control.Feedback type="invalid">
+            Veuillez choisir une réponse
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group style={{ width: "48%" }} className="mb-3">
+          <Form.Label>Pays</Form.Label>
+          <Form.Select required name="pays">
+            <option></option>
+            <option value="Togo"> Togo</option>
+            <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+            <option value="Benin">Benin</option>
+          </Form.Select>
+          <Form.Control.Feedback type="invalid">
+            Veuillez choisir votre Pays
           </Form.Control.Feedback>
         </Form.Group>
       </div>
@@ -130,40 +165,6 @@ const FormContact = () => {
         </Form.Control.Feedback>
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <Form.Label>Sujet</Form.Label>
-        <Form.Select required name="sujet">
-          <option></option>
-          <option value=" Jeunes diplômés"> Programmes PME</option>
-          <option value=" Jeunes diplômés">
-            Programmes Jeunes entrepreneurs
-          </option>
-          <option value="Cadres">Programmes Femmes</option>
-          <option value="Cadres">Programmes Insertion Professionnelle</option>
-          <option value="Autres à préciser">Formation</option>
-          <option value="Autres à préciser">Etude</option>
-          <option value="Autres à préciser">Conseil</option>
-          <option value="Autres à préciser">Accompagnement technique</option>
-          <option value="Autres à préciser">Autre Raison</option>
-        </Form.Select>
-        <Form.Control.Feedback type="invalid">
-          Veuillez choisir une réponse
-        </Form.Control.Feedback>
-      </Form.Group>
-
-      <Form.Group className="mb-3">
-        <Form.Label>Pays</Form.Label>
-        <Form.Select required name="pays">
-          <option></option>
-          <option value="Togo"> Togo</option>
-          <option value="Côte d'Ivoire">Côte d'Ivoire</option>
-          <option value="Benin">Benin</option>
-        </Form.Select>
-        <Form.Control.Feedback type="invalid">
-          Veuillez choisir votre Pays
-        </Form.Control.Feedback>
-      </Form.Group>
-
       <Form.Group className="mb-3" controlId="message">
         <Form.Label>Message</Form.Label>
         <Form.Control
@@ -171,7 +172,6 @@ const FormContact = () => {
           type="text"
           placeholder="Votre message"
           as="textarea"
-          required
         />
       </Form.Group>
 
