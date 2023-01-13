@@ -9,6 +9,17 @@ const nextConfig = {
   images: {
     domains: ["127.0.0.1", process.env.NEXT_IMAGE_ALLOWED_DOMAINS],
   },
+  async redirects() {
+    return process.env.NEXT_PUBLIC_ENABLE_STORIES
+      ? [
+          {
+            source: "/stories",
+            destination: "/",
+            permanent: false,
+          },
+        ]
+      : [];
+  },
 };
 
 module.exports = nextConfig;

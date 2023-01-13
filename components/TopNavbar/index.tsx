@@ -10,6 +10,11 @@ const setCookie = (locale: string) => {
   document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`;
 };
 
+const isStoriesPageDisabled =
+  process.env.NEXT_PUBLIC_ENABLE_STORIES === "false";
+
+console.log(process.env.NEXT_PUBLIC_ENABLE_STORIES);
+
 const TopNavbar = () => {
   const router = useRouter();
   const t = useTranslation();
@@ -19,23 +24,29 @@ const TopNavbar = () => {
       { text: t("link.about"), href: "/about" },
       { text: t("link.solutions"), href: "/solutions" },
       { text: t("link.programs"), href: "/programs" },
-      { text: t("link.stories"), href: "/stories" },
+      {
+        text: t("link.stories"),
+        href: "/stories",
+        isDisabled: isStoriesPageDisabled,
+      },
       { text: t("link.contact"), href: "/contact" },
     ],
     [t]
   );
 
-  const renderLinks = links.map((link) => (
-    <Link
-      className={`${classes.link} 
+  const renderLinks = links
+    .filter((link) => !link.isDisabled)
+    .map((link) => (
+      <Link
+        className={`${classes.link} 
       ${router.pathname === link.href ? classes.linkActive : ""}
     `}
-      key={link.text}
-      href={link.href}
-    >
-      {link.text}
-    </Link>
-  ));
+        key={link.text}
+        href={link.href}
+      >
+        {link.text}
+      </Link>
+    ));
 
   const handleChangeLanguage = (e: any) => {
     const locale = e.target.value;
