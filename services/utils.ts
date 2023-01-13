@@ -16,7 +16,7 @@ export const getSingleContentFilterByLocale = <T extends HasOptionalId>(
   if (data.length && !content.length)
     throw new Error(`Content for locale ${locale} not found.`);
 
-  return !data.length ? null : content[0];
+  return !data.length ? {} : content[0];
 };
 
 export const withGetStaticProps: WithGetStaticProps = async (context, fn) => {
@@ -25,8 +25,6 @@ export const withGetStaticProps: WithGetStaticProps = async (context, fn) => {
   const data = await (fn ? fn() : Promise.resolve([]));
   const content = getSingleContentFilterByLocale(data, locale);
   const props = await withLocalTranslation(locale, content);
-
-  console.log({ props });
 
   return { props };
 };

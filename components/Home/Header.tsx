@@ -7,7 +7,7 @@ import { useHomeContext } from "../../contexts/home";
 
 const Header = () => {
   const questionEltRef = useRef<HTMLSpanElement | null>(null);
-  const content = useHomeContext();
+  const content = useHomeContext() ?? {};
 
   const t = useTranslation();
 

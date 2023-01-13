@@ -33,7 +33,7 @@ const linksPart2 = [
 
 const Main = () => {
   const t = useTranslation();
-  const content = useHomeContext();
+  const content = useHomeContext() ?? {};
 
   const ideals = content.part_3?.map((item, idx) => {
     return {

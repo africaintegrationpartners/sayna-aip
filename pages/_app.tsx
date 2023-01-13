@@ -17,6 +17,7 @@ import nextI18NextConfig from "../next-i18next.config.js";
 // progress
 import "../setup/progress/style.css";
 import { setupNavProgress } from "../setup/progress";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 setupNavProgress();
 
@@ -30,7 +31,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <SSRProvider>
         <Layout>
-          <Component {...pageProps} />
+          <ErrorBoundary>
+            <Component {...pageProps} />
+          </ErrorBoundary>
         </Layout>
       </SSRProvider>
     </>

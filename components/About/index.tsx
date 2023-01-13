@@ -5,7 +5,7 @@ import PageSectionTitle from "../ui/PageSectionTitle";
 import AboutTexts from "./AboutTexts";
 import Ideals, { Ideal } from "./Ideals";
 import classes from "./style.module.css";
-import Teams from "./Teams";
+// import Teams from "./Teams";
 
 const icons = [
   "/images/vision.svg",
@@ -16,7 +16,7 @@ const icons = [
 const About = () => {
   const content = useAboutContext();
 
-  const ideals = content.ideals?.map((item, idx) => {
+  const ideals = content?.ideals?.map((item, idx) => {
     return {
       title: item?.heading,
       body: item?.content,

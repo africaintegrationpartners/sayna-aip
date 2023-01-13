@@ -13,7 +13,6 @@ const Programs = () => {
     if (!programsRef.current) return;
 
     const target = e.currentTarget as HTMLElement;
-    console.log({ target });
     programsRef.current
       .querySelectorAll<HTMLElement>(`.${classes.programGroupItem}`)
       .forEach((elt) => elt !== target && elt.classList.add(classes.hidden));
@@ -23,7 +22,6 @@ const Programs = () => {
     if (!programsRef.current) return;
 
     const target = e.currentTarget as HTMLElement;
-    console.log({ target });
     programsRef.current
       .querySelectorAll<HTMLElement>(`.${classes.programGroupItem}`)
       .forEach((elt) => elt.classList.remove(classes.hidden));
