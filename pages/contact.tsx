@@ -1,10 +1,9 @@
 import type { GetStaticProps, NextPage } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { createContext } from "react";
 import ContactComponent from "../components/Contact";
 import { useTranslation } from "../hooks";
-import api from "../services/apiService";
+import { withGetStaticProps } from "../services/utils";
 
 export const ContentContext = createContext({});
 
@@ -25,23 +24,8 @@ const Contact: NextPage = (props: any) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const { locale = "fr" } = context;
-
-  const localizedData = await serverSideTranslations(locale, ["common"]);
-
-  const contactContentRes = await api.get<any>(
-    `/contact?populate=deep&locale=${locale}`
-  );
-
-  const contactContent = contactContentRes.data?.data?.attributes;
-
-  return {
-    props: {
-      ...localizedData,
-      data: contactContent,
-    },
-  };
+export const getStaticProps: GetStaticProps = (context) => {
+  return withGetStaticProps(context);
 };
 
 export default Contact;

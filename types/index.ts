@@ -25,7 +25,7 @@ export type HasOptionalId = { _id?: Maybe<String> };
 // HOC for GestStaticProps
 export type WithGetStaticProps = (
   arg: Parameters<GetStaticProps>["0"],
-  fn: () => Promise<HasOptionalId[]>
+  fn?: () => Promise<HasOptionalId[]>
 ) => ReturnType<GetStaticProps>;
 
 export type ContextProviderProps<T> = {

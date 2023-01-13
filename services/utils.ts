@@ -12,16 +12,17 @@ export const getSingleContentFilterByLocale = <T extends HasOptionalId>(
     return locale !== defaultLocale ? hasMatch : !hasMatch;
   });
 
-  if (!content.length)
+  // check if we previously had data but the ones for the local is not present
+  if (data.length && !content.length)
     throw new Error(`Content for locale ${locale} not found.`);
 
-  return content[0];
+  return !data.length ? null : content[0];
 };
 
 export const withGetStaticProps: WithGetStaticProps = async (context, fn) => {
   const defaultLocale = "en";
   const { locale = defaultLocale } = context;
-  const data = await fn();
+  const data = await (fn ? fn() : Promise.resolve([]));
   const content = getSingleContentFilterByLocale(data, locale);
   const props = await withLocalTranslation(locale, content);
 
