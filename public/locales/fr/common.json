@@ -50,5 +50,12 @@
   "contact.error_country": "Veuillez choisir votre pays",
   "contact.error_how-did-you-hear": "Veuillez choisir une réponse",
 
+  "contact.placeholder_name": "Votre nom",
+  "contact.placeholder_first-name": "Vos prénoms",
+  "contact.placeholder_phone": "+1 23 456 789",
+  "contact.placeholder_email": "example@company.com",
+  "contact.placeholder_company": "Votre société",
+  "contact.placeholder_message": "Votre message",
+
   "solutions.sectors": "Nos secteurs"
 }

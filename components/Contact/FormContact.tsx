@@ -36,7 +36,7 @@ const FormContact = () => {
           <Form.Control
             name="nom"
             type="text"
-            placeholder="Votre nom"
+            placeholder={t("contact.placeholder_name")}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -52,7 +52,7 @@ const FormContact = () => {
           <Form.Control
             name="prénom"
             type="text"
-            placeholder="Vos prénoms"
+            placeholder={t("contact.placeholder_first-name")}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -67,7 +67,7 @@ const FormContact = () => {
           <Form.Control
             name="tel"
             type="tel"
-            placeholder="+1 23 456 789"
+            placeholder={t("contact.placeholder_phone")}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -79,7 +79,7 @@ const FormContact = () => {
           <Form.Control
             name="email"
             type="email"
-            placeholder="Votre email"
+            placeholder={t("contact.placeholder_email")}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -95,7 +95,7 @@ const FormContact = () => {
             required
             name="société"
             type="text"
-            placeholder="Votre société"
+            placeholder={t("contact.placeholder_company")}
           />
           <Form.Control.Feedback type="invalid">
             {t("contact.error_company")}
@@ -172,7 +172,7 @@ const FormContact = () => {
         <Form.Control
           name="message"
           type="text"
-          placeholder="Votre message"
+          placeholder={t("contact.placeholder_message")}
           as="textarea"
         />
       </Form.Group>
