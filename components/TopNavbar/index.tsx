@@ -4,7 +4,7 @@ import classes from "./style.module.css";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useTranslation } from "../../hooks";
-import { useMemo } from "react";
+import { useCallback, useMemo, useRef } from "react";
 
 const setCookie = (locale: string) => {
   document.cookie = `NEXT_LOCALE=${locale}; max-age=31536000; path=/`;
@@ -16,6 +16,11 @@ const isStoriesPageDisabled =
 const TopNavbar = () => {
   const router = useRouter();
   const t = useTranslation();
+
+  const togglerRef = useRef<HTMLButtonElement | null>(null);
+  const onLinkClick = useCallback(() => {
+    togglerRef?.current?.click();
+  }, []);
 
   const links = useMemo(
     () => [
@@ -36,6 +41,7 @@ const TopNavbar = () => {
     .filter((link) => !link.isDisabled)
     .map((link) => (
       <Link
+        onClick={onLinkClick}
         className={`${classes.link} 
       ${router.pathname === link.href ? classes.linkActive : ""}
     `}
@@ -63,7 +69,7 @@ const TopNavbar = () => {
             alt="logo"
           />
         </Link>
-        <Navbar.Toggle />
+        <Navbar.Toggle ref={togglerRef} />
         <Navbar.Collapse className="align-items-center py-4 py-lg-0">
           <Nav className="ms-auto gap-4 align-items-center">
             {renderLinks}
