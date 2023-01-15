@@ -17,6 +17,7 @@ const Home: NextPage<PageProps<HomeContent>> = (props) => {
         <title>Home | AIP</title>
         <meta name="description" content={t("meta.description_home")} />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preload" as="image" href="/images/home_bg_mobile.webp" />
       </Head>
       <HomeContextProvider value={props.data}>
         <HomeComponent />
