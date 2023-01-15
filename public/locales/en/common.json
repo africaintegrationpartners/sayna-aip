@@ -15,13 +15,41 @@
   "link.stories": "stories",
   "link.contact": "contact",
   "link.legal-notice": "legal notice",
+
   "meta.description_home": "Discover Africa Integration Partner",
   "meta.description_about": "About Africa Integration Partner",
   "meta.description_solutions": "Discover the solutions proposed by Africa Integration Partner",
   "meta.description_programs": "Discover the Programs proposed by Africa Integration Partner",
   "meta.description_stories": "Stories by Africa Integration Partner",
   "meta.description_contact": "Contact Africa Integration Partner",
+
   "contact.form_title_contact-us": "Contact Us",
   "contact.form_title_recruiting": "Employees & Consultants",
+  "contact.prompt_name": "Name",
+  "contact.prompt_first-name": "First Name",
+  "contact.prompt_phone": "Phone number",
+  "contact.prompt_email": "Email",
+  "contact.prompt_company": "company",
+  "contact.prompt_profile": "profile",
+  "contact.prompt_topic": "topic",
+  "contact.prompt_country": "country",
+  "contact.prompt_how-did-you-hear": "How did you hear about us?",
+  "contact.prompt_message": "message",
+  "contact.prompt_cv": "Upload your CV",
+  "contact.prompt_cover-letter": "Upload your cover letter",
+  "contact.prompt_attachment": "Other document",
+
+  "contact.info_file-upload": "You can upload an image or a pdf file",
+
+  "contact.error_name": "Please enter your name",
+  "contact.error_first-name": "Please enter your first name",
+  "contact.error_phone": "Please enter your phone number",
+  "contact.error_email": "Please enter your email",
+  "contact.error_company": "Please enter your company",
+  "contact.error_profile": "Please choose your profile",
+  "contact.error_topic": "Please choose a topic",
+  "contact.error_country": "Please choose your country",
+  "contact.error_how-did-you-hear": "Please choose your one answer",
+
   "solutions.sectors": "Our sectors"
 }

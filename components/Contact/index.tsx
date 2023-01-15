@@ -11,7 +11,7 @@ const Contact = () => {
     <Container className={classes.container}>
       <AnimateOnView amount={0.2}>
         <Row>
-          <Col xs="12" md="7" className="mb-4">
+          <Col xs="12" md="7" className="mb-5">
             <ContactForm />
           </Col>
           <Col xs="12" md="5">

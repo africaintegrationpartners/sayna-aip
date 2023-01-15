@@ -13,8 +13,6 @@ const setCookie = (locale: string) => {
 const isStoriesPageDisabled =
   process.env.NEXT_PUBLIC_ENABLE_STORIES === "false";
 
-console.log(process.env.NEXT_PUBLIC_ENABLE_STORIES);
-
 const TopNavbar = () => {
   const router = useRouter();
   const t = useTranslation();

@@ -43,3 +43,7 @@
 .contactDetail {
   max-width: 800px;
 }
+
+.form label::first-letter {
+  text-transform: capitalize;
+}

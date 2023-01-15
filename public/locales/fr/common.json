@@ -23,5 +23,32 @@
   "meta.description_contact": "Contacter Africa Integration Partner",
   "contact.form_title_contact-us": "Nous Contacter",
   "contact.form_title_recruiting": "Salariés & Consultants",
+
+  "contact.prompt_name": "Nom",
+  "contact.prompt_first-name": "prénoms",
+  "contact.prompt_phone": "Téléphone",
+  "contact.prompt_email": "Email",
+  "contact.prompt_company": "société",
+  "contact.prompt_profile": "profil",
+  "contact.prompt_topic": "sujet",
+  "contact.prompt_country": "pays",
+  "contact.prompt_how-did-you-hear": "Comment aviez-vous entendu parler de nous ?",
+  "contact.prompt_message": "message",
+  "contact.prompt_cv": "Votre CV",
+  "contact.prompt_cover-letter": "votre lettre de motivation",
+  "contact.prompt_attachment": "Pièce jointe",
+
+  "contact.info_file-upload": "vous pouvez importer une image ou un fichier pdf",
+
+  "contact.error_name": "Veuillez saisir votre nom",
+  "contact.error_first-name": "Veuillez saisir votre prénoms",
+  "contact.error_phone": "Veuillez saisir votre numéro de téléphone",
+  "contact.error_email": "Veuillez saisir votre  email",
+  "contact.error_company": "Veuillez saisir votre société",
+  "contact.error_profile": "Veuillez choisir votre profile",
+  "contact.error_topic": "Veuillez choisir un sujet",
+  "contact.error_country": "Veuillez choisir votre pays",
+  "contact.error_how-did-you-hear": "Veuillez choisir une réponse",
+
   "solutions.sectors": "Nos secteurs"
 }

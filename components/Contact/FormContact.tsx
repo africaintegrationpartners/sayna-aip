@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../ui/Button";
 import Form from "react-bootstrap/Form";
 import { useTranslation } from "../../hooks";
+import classes from "./style.module.css";
 
 const FormContact = () => {
   const t = useTranslation();
@@ -25,12 +26,13 @@ const FormContact = () => {
       method="POST"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
+      className={classes.form}
     >
       <input type="hidden" name="form-name" value="query" />
 
       <div className="d-flex justify-content-between">
         <Form.Group className="mb-3" controlId="name" style={{ width: "48%" }}>
-          <Form.Label>Nom</Form.Label>
+          <Form.Label>{t("contact.prompt_name")}</Form.Label>
           <Form.Control
             name="nom"
             type="text"
@@ -38,7 +40,7 @@ const FormContact = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Veuillez saisir votre nom
+            {t("contact.error_name")}
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group
@@ -46,7 +48,7 @@ const FormContact = () => {
           controlId="prénoms"
           style={{ width: "48%" }}
         >
-          <Form.Label>Prénoms</Form.Label>
+          <Form.Label>{t("contact.prompt_first-name")} </Form.Label>
           <Form.Control
             name="prénom"
             type="text"
@@ -54,14 +56,14 @@ const FormContact = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Veuillez saisir votre prénoms
+            {t("contact.error_first-name")}
           </Form.Control.Feedback>
         </Form.Group>
       </div>
 
       <div className="d-flex justify-content-between">
         <Form.Group style={{ width: "48%" }} className="mb-3">
-          <Form.Label>Telephone</Form.Label>
+          <Form.Label>{t("contact.prompt_phone")}</Form.Label>
           <Form.Control
             name="tel"
             type="tel"
@@ -69,11 +71,11 @@ const FormContact = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Veuillez saisir votre telephone
+            {t("contact.error_phone")}
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group style={{ width: "48%" }} className="mb-3" controlId="email">
-          <Form.Label>Email</Form.Label>
+          <Form.Label>{t("contact.prompt_email")}</Form.Label>
           <Form.Control
             name="email"
             type="email"
@@ -81,14 +83,14 @@ const FormContact = () => {
             required
           />
           <Form.Control.Feedback type="invalid">
-            Veuillez saisir votre email
+            {t("contact.error_email")}
           </Form.Control.Feedback>
         </Form.Group>
       </div>
 
       <div className="d-flex justify-content-between">
         <Form.Group className="mb-3" style={{ width: "48%" }}>
-          <Form.Label>Société</Form.Label>
+          <Form.Label>{t("contact.prompt_company")}</Form.Label>
           <Form.Control
             required
             name="société"
@@ -96,12 +98,12 @@ const FormContact = () => {
             placeholder="Votre société"
           />
           <Form.Control.Feedback type="invalid">
-            Veuillez saisir votre société
+            {t("contact.error_company")}
           </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group className="mb-3" style={{ width: "48%" }}>
-          <Form.Label>Profil</Form.Label>
+          <Form.Label>{t("contact.prompt_profile")}</Form.Label>
           <Form.Select required name="fonction">
             <option></option>
             <option value="bailleur">Bailleur de fonds</option>
@@ -112,14 +114,14 @@ const FormContact = () => {
             <option value="jeune-diplome">Jeune diplômé</option>
           </Form.Select>
           <Form.Control.Feedback type="invalid">
-            Veuillez choisir votre fonction
+            {t("contact.error_profile")}
           </Form.Control.Feedback>
         </Form.Group>
       </div>
 
       <div className="d-flex justify-content-between">
         <Form.Group style={{ width: "48%" }} className="mb-3">
-          <Form.Label>Sujet</Form.Label>
+          <Form.Label>{t("contact.prompt_topic")}</Form.Label>
           <Form.Select required name="sujet">
             <option></option>
             <option value=" Jeunes diplômés"> Programmes PME</option>
@@ -135,12 +137,12 @@ const FormContact = () => {
             <option value="Autres à préciser">Autre Raison</option>
           </Form.Select>
           <Form.Control.Feedback type="invalid">
-            Veuillez choisir une réponse
+            {t("contact.error_topic")}
           </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group style={{ width: "48%" }} className="mb-3">
-          <Form.Label>Pays</Form.Label>
+          <Form.Label>{t("contact.prompt_country")}</Form.Label>
           <Form.Select required name="pays">
             <option></option>
             <option value="Togo"> Togo</option>
@@ -148,25 +150,25 @@ const FormContact = () => {
             <option value="Benin">Benin</option>
           </Form.Select>
           <Form.Control.Feedback type="invalid">
-            Veuillez choisir votre Pays
+            {t("contact.error_country")}
           </Form.Control.Feedback>
         </Form.Group>
       </div>
 
       <Form.Group className="mb-3">
-        <Form.Label>Comment aviez-vous entendu parler de nous ?</Form.Label>
+        <Form.Label>{t("contact.prompt_how-did-you-hear")}</Form.Label>
         <Form.Select required name="comment-trouver">
           <option></option>
           <option value="sms">SMS</option>
           <option value="email">E-mailing</option>
         </Form.Select>
         <Form.Control.Feedback type="invalid">
-          Veuillez choisir une réponse
+          {t("contact.error_how-did-you-hear")}
         </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="message">
-        <Form.Label>Message</Form.Label>
+        <Form.Label>{t("contact.prompt_message")}</Form.Label>
         <Form.Control
           name="message"
           type="text"
@@ -176,7 +178,7 @@ const FormContact = () => {
       </Form.Group>
 
       <Form.Group controlId="formFile" className="mb-4">
-        <Form.Label>Pièce jointe</Form.Label>
+        <Form.Label>{t("contact.prompt_attachment")}</Form.Label>
         <Form.Control name="pj" type="file" accept="image/*, .pdf" />
       </Form.Group>
 
