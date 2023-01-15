@@ -1,13 +1,20 @@
 .header {
   position: relative;
   padding-block: 12rem;
-  background-image: url("/images/home_bg.webp");
+  background-image: url("/images/home_bg_mobile.jpg");
   background-size: cover;
   background-position: center calc(50px + 1.5rem);
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.562);
   background-blend-mode: overlay;
-  margin-bottom: 10rem;
+  margin-bottom: 6rem;
+}
+
+@media screen and (min-width: 567px) {
+  .header {
+    background-image: url("/images/home_bg.webp");
+    margin-bottom: 10rem;
+  }
 }
 
 .bg {
@@ -16,7 +23,7 @@
 }
 
 .pageTitle {
-  width: 70%;
+  width: 75%;
   margin: 0 auto;
 }
 
@@ -42,6 +49,10 @@
 }
 
 @media screen and (min-width: 567px) {
+  .pageTitle {
+    width: 70%;
+  }
+
   .pageTitle h1 {
     font-family: "Brygada", serif;
     font-size: 2.3rem;
@@ -61,7 +72,7 @@
 }
 
 .main h2 {
-  width: max-content;
+  /* width: max-content; */
   position: relative;
   margin: 0 auto;
 }

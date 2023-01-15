@@ -25,7 +25,7 @@ const About = () => {
   });
 
   return (
-    <Container className={classes.container}>
+    <Container className={classes.container + " px-4"}>
       <AnimateOnView>
         <PageSectionTitle
           title={content?.intro?.heading ?? ""}

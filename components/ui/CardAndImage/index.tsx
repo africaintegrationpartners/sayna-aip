@@ -35,7 +35,10 @@ const CardAndImage = (props: Props) => {
           objectPosition="center"
         />
       </Col>
-      <Col md={6} className="px-5 d-flex flex-column justify-content-center">
+      <Col
+        md={6}
+        className="px-2 px-md-5 d-flex flex-column justify-content-center"
+      >
         <h3>{title}</h3>
         <div>{children}</div>
       </Col>

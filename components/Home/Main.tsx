@@ -46,7 +46,7 @@ const Main = () => {
   return (
     <section className={classes.main + " px-2 px-md-5"}>
       <Container>
-        <AnimateOnView>
+        <AnimateOnView amount={0.5}>
           <PageSectionTitle
             title={content?.part_1?.heading ?? ""}
             subtitle={content?.part_1?.content ?? ""}
