@@ -19,7 +19,8 @@ const TopNavbar = () => {
 
   const togglerRef = useRef<HTMLButtonElement | null>(null);
   const onLinkClick = useCallback(() => {
-    togglerRef?.current?.click();
+    const matchLarge = window.matchMedia("(min-width: 992px)").matches;
+    if (!matchLarge) togglerRef?.current?.click();
   }, []);
 
   const links = useMemo(
