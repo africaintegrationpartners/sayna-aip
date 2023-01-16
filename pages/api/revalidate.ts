@@ -1,18 +1,28 @@
-import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
+// import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const SANITY_WEBHOOK_SECRET = process.env.SANITY_WEBHOOK_SECRET + "";
+// const SANITY_WEBHOOK_SECRET = process.env.SANITY_WEBHOOK_SECRET + "";
+const SANITY_TOKEN = process.env.SANITY_TOKEN + "";
+
+const isValidRequest = (req: NextApiRequest) => {
+  // NOT WORKING FOR SOME REASON
+  // const signature = req.headers[SIGNATURE_HEADER_NAME] + "";
+  // return  isValidSignature(
+  //   JSON.stringify(req.body),
+  //   signature,
+  //   SANITY_WEBHOOK_SECRET
+  // );
+
+  // ALTERNATIVE FOR NOW
+  const token = req.headers["x-sanity-token"] + "";
+  return token === SANITY_TOKEN;
+};
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const signature = req.headers[SIGNATURE_HEADER_NAME] + "";
-  const isValid = isValidSignature(
-    JSON.stringify(req.body),
-    signature,
-    SANITY_WEBHOOK_SECRET
-  );
+  const isValid = isValidRequest(req);
 
   console.log(`===== Is the webhook request valid? ${isValid}`);
 
@@ -23,8 +33,8 @@ export default async function handler(
   }
 
   try {
-    const pathToRevalidate = req.body._type;
-
+    const pathToRevalidate =
+      req.body._type === "home" ? "/" : "/" + req.body._type;
     console.log(`===== Revalidating: ${pathToRevalidate}`);
 
     await res.revalidate(pathToRevalidate);
