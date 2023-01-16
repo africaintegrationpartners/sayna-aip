@@ -12,40 +12,40 @@ const Programs = () => {
   const onMouseEnter: MouseEventHandler<HTMLElement> = (e) => {
     if (!programsRef.current) return;
 
-    const target = e.currentTarget as HTMLElement;
-    programsRef.current
-      .querySelectorAll<HTMLElement>(`.${classes.programGroupItem}`)
-      .forEach((elt) => elt !== target && elt.classList.add(classes.hidden));
+    // const target = e.currentTarget as HTMLElement;
+    // programsRef.current
+    //   .querySelectorAll<HTMLElement>(`.${classes.programGroupItem}`)
+    //   .forEach((elt) => elt !== target && elt.classList.add(classes.hidden));
   };
 
   const onMouseLeave: MouseEventHandler<HTMLElement> = (e) => {
     if (!programsRef.current) return;
 
     const target = e.currentTarget as HTMLElement;
-    programsRef.current
-      .querySelectorAll<HTMLElement>(`.${classes.programGroupItem}`)
-      .forEach((elt) => elt.classList.remove(classes.hidden));
+    // programsRef.current
+    //   .querySelectorAll<HTMLElement>(`.${classes.programGroupItem}`)
+    //   .forEach((elt) => elt.classList.remove(classes.hidden));
   };
 
   const renderPrograms = content?.programs?.map((prg) => (
-    <Col key={prg?.group_name} className={`${classes.program} px-2`}>
+    <Col key={prg?.group_name} className={`${classes.program} px-0`}>
       <div
-        className={`${classes.programCard} px-3 py-4 text-center mb-3 h-100 rounded`}
+        className={`${classes.programCard} px-3 py-4 text-center mb-3 h-100 `}
       >
-        <h5 className="mb-4">{prg?.group_name}</h5>
+        <h5>{prg?.group_name}</h5>
         <Row xs="1">
           {prg?.groups?.map((group) => (
             <Col
               key={group?.heading}
-              className="w-100 px-3 text-center mb-3 flex-no-wrap"
+              className="w-100 px-3 text-center mb-3 flex-no-wrap mb-5"
             >
               <Card
-                className={`${classes.programGroupItem} py-3 rounded-0`}
+                className={`${classes.programGroupItem} rounded-0`}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
               >
                 <Card.Body>
-                  <Card.Title className={classes.cardTitle}>
+                  <Card.Title className={`${classes.cardTitle}`}>
                     {group?.heading}
                   </Card.Title>
                   <div className={`${classes.programDetail}`}>
