@@ -28,6 +28,7 @@ const FormContact = () => {
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       className={classes.form}
+      encType="multipart/form-data"
     >
       <input type="hidden" name="form-name" value="query" />
 
@@ -105,7 +106,13 @@ const FormContact = () => {
 
         <Form.Group className="mb-3" style={{ width: "48%" }}>
           <Form.Label>{t("contact.prompt_profile")}</Form.Label>
-          <Form.Select required name="fonction">
+          <Form.Control
+            required
+            name="profile"
+            type="text"
+            placeholder={t("contact.placeholder_profile")}
+          />
+          {/* <Form.Select required name="fonction">
             <option></option>
             <option value="Funders">{t("contact.funders")}</option>
             <option value="State representative">
@@ -121,7 +128,7 @@ const FormContact = () => {
             <option value="Young graduate">
               {t("contact.young-graduate")}
             </option>
-          </Form.Select>
+          </Form.Select> */}
           <Form.Control.Feedback type="invalid">
             {t("contact.error_profile")}
           </Form.Control.Feedback>
