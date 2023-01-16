@@ -1,3 +1,8 @@
+/**
+ * SHOULD BE THE PATH TO REVALIDATE NEXTJS BUT NETLIFY DOESN'T SUPPORT ON-DEMAND ISR
+ * SO THIS DOESN'T WORK AT THE TIME OF WRITING
+ */
+
 // import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { NextApiRequest, NextApiResponse } from "next";
 
