@@ -19,6 +19,17 @@ export const getSingleContentFilterByLocale = <T extends HasOptionalId>(
   return !data.length ? {} : content[0];
 };
 
+const getRevalidateInterval = () => {
+  const interval = parseInt(process.env.REVALIDATE_INTERVAL_IN_SEC + "");
+  return isNaN(interval) || interval < 60 ? 60 : interval;
+};
+
+/**
+ * used to fetch common data for all pages, giving the posibility to page specific data
+ * @param context
+ * @param fn
+ * @returns
+ */
 export const withGetStaticProps: WithGetStaticProps = async (context, fn) => {
   const defaultLocale = "en";
   const { locale = defaultLocale } = context;
@@ -26,5 +37,5 @@ export const withGetStaticProps: WithGetStaticProps = async (context, fn) => {
   const content = getSingleContentFilterByLocale(data, locale);
   const props = await withLocalTranslation(locale, content);
 
-  return { props };
+  return { props, revalidate: getRevalidateInterval() };
 };
