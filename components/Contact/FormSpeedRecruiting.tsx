@@ -14,7 +14,7 @@ const FormSpeedRecruiting = () => {
       data-netlify-honeypot="bot-field"
       encType="multipart/form-data"
       className={classes.form}
-      action="/favicon.ico" // to solve the 'Method Not Allowed' issue
+      action="/form"
     >
       <input type="hidden" name="form-name" value="speed-recruiting" />
 

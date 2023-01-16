@@ -58,6 +58,9 @@
   "contact.advice": "Advice",
   "contact.tech-support": "Technical support",
 
+  "contact.thank": "Thank you!",
+  "contact.information-received": "Your information has been received",
+
   "contact.error_name": "Please enter your name",
   "contact.error_first-name": "Please enter your first name",
   "contact.error_phone": "Please enter your phone number",

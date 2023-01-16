@@ -56,6 +56,9 @@
   "contact.advice": "Conseil",
   "contact.tech-support": "Accompagnement technique",
 
+  "contact.thank": "Merci!",
+  "contact.information-received": "Votre information a été soumise avec succès",
+
   "contact.error_name": "Veuillez saisir votre nom",
   "contact.error_first-name": "Veuillez saisir votre prénoms",
   "contact.error_phone": "Veuillez saisir votre numéro de téléphone",
