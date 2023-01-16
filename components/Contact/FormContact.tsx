@@ -24,6 +24,7 @@ const FormContact = () => {
       onSubmit={handleSubmit}
       name="query"
       method="POST"
+      action="/favicon.ico" // to solve the 'Method Not Allowed' issue
       data-netlify="true"
       data-netlify-honeypot="bot-field"
       className={classes.form}
