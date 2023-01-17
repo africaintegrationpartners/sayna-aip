@@ -23,19 +23,30 @@
   opacity: 1;
   transition: all ease 0.3s;
   position: relative;
-  border-color: #006ba0;
+  border-color: #e4e4e4;
   padding: 2.5rem 1rem;
   text-align: left;
+  transition: all ease 0.3s;
+  clip-path: polygon(0% 0%, calc(100% - 35px) 0, 100% 35px, 100% 100%, 0% 100%);
+}
+.programGroupItem:hover {
+  border-color: #006ba0;
+  transform: rotate(-1deg) scale(1.05);
+  clip-path: polygon(0% 0%, 100% 0, 100% 0, 100% 100%, 0% 100%);
 }
 .programGroupItem::after {
   content: "";
   position: absolute;
   top: -1px;
   right: -1px;
-  border-style: solid;
-  border-width: 0 30px 30px 0;
-  border-color: #006ca0 #ffffff;
-  transition: all ease 0.4s;
+  width: 35px;
+  height: 35px;
+  background-color: #006ca0;
+  transition: all ease 0.3s;
+}
+.programGroupItem:hover::after {
+  width: 0;
+  height: 0;
 }
 .hidden {
   opacity: 0.35;
