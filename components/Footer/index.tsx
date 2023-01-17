@@ -5,6 +5,9 @@ import classes from "./style.module.css";
 import { useTranslation } from "../../hooks";
 import { useMemo } from "react";
 
+const isStoriesPageDisabled =
+  process.env.NEXT_PUBLIC_ENABLE_STORIES === "false";
+
 const socials = [
   {
     icon: "/images/facebook.svg",
@@ -37,7 +40,11 @@ const Footer = () => {
       { text: t("link.about"), href: "/about" },
       { text: t("link.solutions"), href: "/solutions" },
       { text: t("link.programs"), href: "/programs" },
-      { text: t("link.stories"), href: "/stories" },
+      {
+        text: t("link.stories"),
+        href: "/stories",
+        isDisabled: isStoriesPageDisabled,
+      },
       { text: t("link.contact"), href: "/contact" },
     ],
     [t]
@@ -55,13 +62,15 @@ const Footer = () => {
     </a>
   ));
 
-  const renderLinks = links.map((link) => (
-    <Col key={link.href}>
-      <Link href={link.href} className={classes.link}>
-        {link.text}
-      </Link>
-    </Col>
-  ));
+  const renderLinks = links
+    .filter((link) => !link.isDisabled)
+    .map((link) => (
+      <Col key={link.href}>
+        <Link href={link.href} className={classes.link}>
+          {link.text}
+        </Link>
+      </Col>
+    ));
 
   return (
     <footer className={classes.footer + " py-5 text-white"}>

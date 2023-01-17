@@ -43,4 +43,6 @@ a:hover {
   --clr-primary: #f4b814;
   --clr-light: #cecdcd;
   --clr-white: #fff;
+
+  overflow-x: hidden;
 }

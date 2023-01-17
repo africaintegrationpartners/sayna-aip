@@ -9,7 +9,7 @@ interface LinkProps {
 
 const Link = (props: LinkProps) => {
   return (
-    <span className={props.className}>
+    <span className={props.className} style={{ cursor: "pointer" }}>
       <NextLink href={props.href ?? ""}>
         <span onClick={props.onClick}>{props.children}</span>
       </NextLink>

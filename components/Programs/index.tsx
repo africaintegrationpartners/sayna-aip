@@ -68,7 +68,13 @@ const Programs = () => {
           subtitle={""}
         />
       </AnimateOnView>
-      <Row xs={1} md={2} lg={3} className="mb-5 pb-5" ref={programsRef}>
+      <Row
+        xs={1}
+        md={2}
+        lg={3}
+        className={`${classes.allPrograms} py-4`}
+        ref={programsRef}
+      >
         {renderPrograms}
       </Row>
     </Container>
