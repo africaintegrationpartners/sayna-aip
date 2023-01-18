@@ -122,6 +122,7 @@ const FormContact = () => {
             <option value="Young graduate">
               {t("contact.young-graduate")}
             </option>
+            <option value="Other">{t("contact.other")}</option>
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             {t("contact.error_profile")}
