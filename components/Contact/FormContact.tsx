@@ -4,6 +4,10 @@ import Form from "react-bootstrap/Form";
 import { useTranslation } from "../../hooks";
 import classes from "./style.module.css";
 
+import "react-phone-number-input/style.css";
+import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
+import { E164Number } from "libphonenumber-js/types";
+
 const FormContact = () => {
   const t = useTranslation();
   const [validated, setValidated] = useState(false);
@@ -17,6 +21,9 @@ const FormContact = () => {
 
     setValidated(true);
   };
+
+  const [value, setValue] = useState<E164Number | undefined>();
+
   return (
     <Form
       noValidate
@@ -31,7 +38,23 @@ const FormContact = () => {
       encType="multipart/form-data"
     >
       <input type="hidden" name="form-name" value="query" />
-
+      <PhoneInput
+        placeholder="Enter phone number"
+        value={value}
+        onChange={setValue}
+        countries={["BJ", "CI", "TG"]}
+        international
+        countryCallingCodeEditable={false}
+        defaultCountry="CI"
+        error={
+          value
+            ? isPossiblePhoneNumber(value)
+              ? undefined
+              : "Invalid phone number"
+            : "Phone number required"
+        }
+        className="form-cotrol"
+      />
       <div className="d-flex justify-content-between">
         <Form.Group className="mb-3" controlId="name" style={{ width: "48%" }}>
           <Form.Label>{t("contact.prompt_name")}</Form.Label>
