@@ -3,6 +3,7 @@ import { SSRConfig } from "next-i18next";
 import { ReactElement } from "react";
 import {
   GetAboutContentQuery,
+  GetContactContentQuery,
   GetHomeContentQuery,
   GetProgramsContentQuery,
   GetSolutionsContentQuery,
@@ -17,6 +18,7 @@ export type HomeContent = Unpacked<GetHomeContentQuery["data"]>;
 export type AboutContent = Unpacked<GetAboutContentQuery["data"]>;
 export type SolutionsContent = Unpacked<GetSolutionsContentQuery["data"]>;
 export type ProgramsContent = Unpacked<GetProgramsContentQuery["data"]>;
+export type ContactContent = Unpacked<GetContactContentQuery["data"]>;
 
 export type Maybe<T> = T | null | undefined;
 

@@ -2,12 +2,13 @@ import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { createContext } from "react";
 import ContactComponent from "../components/Contact";
+import { ContactContextProvider } from "../contexts/contact";
 import { useTranslation } from "../hooks";
+import { getContactContent } from "../services/contact";
 import { withGetStaticProps } from "../services/utils";
+import { ContactContent, PageProps } from "../types";
 
-export const ContentContext = createContext({});
-
-const Contact: NextPage = (props: any) => {
+const Contact: NextPage<PageProps<ContactContent>> = (props) => {
   const t = useTranslation();
 
   return (
@@ -17,15 +18,15 @@ const Contact: NextPage = (props: any) => {
         <meta name="description" content={t("meta.description_contact")} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ContentContext.Provider value={props["data"]}>
+      <ContactContextProvider value={props.data}>
         <ContactComponent />
-      </ContentContext.Provider>
+      </ContactContextProvider>
     </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = (context) => {
-  return withGetStaticProps(context);
+  return withGetStaticProps(context, getContactContent);
 };
 
 export default Contact;

@@ -7,13 +7,39 @@ import classes from "./style.module.css";
 import "react-phone-number-input/style.css";
 import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
 import { E164Number } from "libphonenumber-js/types";
+import { useContactContext } from "../../contexts/contact";
 
 const FormContact = () => {
+  const content = useContactContext();
+
+  const getSelectOptionsFor = (
+    selector: Exclude<keyof typeof content, "_id" | "__typename">
+  ) => {
+    return (
+      <>
+        <option></option>
+        {content[selector]?.map((p, idx) => (
+          <option key={idx} value={p ?? ""}>
+            {p}
+          </option>
+        ))}
+      </>
+    );
+  };
+
   const t = useTranslation();
   const [validated, setValidated] = useState(false);
 
   const phoneInputRef = useRef<any>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
+
+  // ****************
+  // PHONE NUMBER
+  const [phoneNumber, setPhoneNumber] = useState<E164Number>("");
+
+  const onPhoneInputChange = (val: E164Number) => {
+    setPhoneNumber(() => val);
+  };
 
   useEffect(() => {
     const phoneInput = phoneInputRef.current as HTMLInputElement;
@@ -35,7 +61,7 @@ const FormContact = () => {
     };
   }, [t]);
 
-  const validateInputTel = useCallback((val: E164Number) => {
+  const validatePhoneNumber = useCallback((val: E164Number) => {
     if (isPossiblePhoneNumber(val)) {
       phoneInputRef.current?.classList.remove("is-invalid");
       phoneInputRef.current?.classList.add("is-valid");
@@ -45,6 +71,13 @@ const FormContact = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (formRef.current?.classList.contains("was-validated"))
+      validatePhoneNumber(phoneNumber ?? "");
+  }, [phoneNumber, validatePhoneNumber]);
+
+  // ****************
+  // SUBMIT FORM
   const handleSubmit = (event: any) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -55,20 +88,8 @@ const FormContact = () => {
     setValidated(true);
 
     const val = phoneInputRef.current?.value ?? "";
-    validateInputTel(val);
+    validatePhoneNumber(val);
   };
-
-  const [value, setValue] = useState<E164Number>("");
-
-  const onPhoneInputChange = (val: E164Number) => {
-    setValue(() => val);
-  };
-
-  useEffect(() => {
-    if (formRef.current?.classList.contains("was-validated"))
-      validateInputTel(value ?? "");
-  }, [value, validateInputTel]);
-
   return (
     <Form
       ref={formRef}
@@ -121,7 +142,7 @@ const FormContact = () => {
         <Form.Group style={{ width: "48%" }} className="mb-3 ">
           <Form.Label>{t("contact.prompt_phone")}</Form.Label>
           <PhoneInput
-            value={value}
+            value={phoneNumber}
             onChange={onPhoneInputChange}
             countries={["CI", "BJ", "TG"]}
             international
@@ -136,7 +157,7 @@ const FormContact = () => {
             type="tel"
             className="d-none"
             name="telephone"
-            value={value}
+            value={phoneNumber}
           />
         </Form.Group>
         <Form.Group style={{ width: "48%" }} className="mb-3" controlId="email">
@@ -170,22 +191,7 @@ const FormContact = () => {
         <Form.Group className="mb-3" style={{ width: "48%" }}>
           <Form.Label>{t("contact.prompt_profile")}</Form.Label>
           <Form.Select required name="Profile">
-            <option></option>
-            <option value="Funders">{t("contact.funders")}</option>
-            <option value="State representative">
-              {t("contact.state-representative")}
-            </option>
-            <option value="Company manager">
-              {t("contact.company-manager")}
-            </option>
-            <option value="Entrepreneur">{t("contact.entrepreneur")}</option>
-            <option value="Executive staff">
-              {t("contact.executive-staff")}
-            </option>
-            <option value="Young graduate">
-              {t("contact.young-graduate")}
-            </option>
-            <option value="Other">{t("contact.other")}</option>
+            {getSelectOptionsFor("profile")}
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             {t("contact.error_profile")}
@@ -197,22 +203,7 @@ const FormContact = () => {
         <Form.Group style={{ width: "48%" }} className="mb-3">
           <Form.Label>{t("contact.prompt_topic")}</Form.Label>
           <Form.Select required name="Topic">
-            <option></option>
-            <option value="SME programs">{t("contact.program-sme")}</option>
-            <option value="Young entrepreneur programs">
-              {t("contact.program-young-entrepreneur")}
-            </option>
-            <option value="Women programs">{t("contact.program-women")}</option>
-            <option value="Professional insertion programs">
-              {t("contact.program-insertion-pro")}
-            </option>
-            <option value="Training">{t("contact.training")}</option>
-            <option value="Study">{t("contact.study")}</option>
-            <option value="Advice">{t("contact.advice")}</option>
-            <option value="Technical support">
-              {t("contact.tech-support")}
-            </option>
-            <option value="Other">{t("contact.other")}</option>
+            {getSelectOptionsFor("topic")}
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             {t("contact.error_topic")}
@@ -222,15 +213,7 @@ const FormContact = () => {
         <Form.Group style={{ width: "48%" }} className="mb-3">
           <Form.Label>{t("contact.prompt_how-did-you-hear")}</Form.Label>
           <Form.Select required name="How did you hear">
-            <option></option>
-            <option value="SMS / E-mailing">SMS / E-mailing</option>
-            <option value="Seminar">{t("contact.seminar")}</option>
-            <option value="LinkedIn">LinkedIn</option>
-            <option value="Instagram">Instagram</option>
-            <option value="Facebook">Facebook</option>
-            <option value="Twitter">Twitter</option>
-            <option value="Written Press">{t("contact.written-press")}</option>
-            <option value="Other">{t("contact.other")}</option>
+            {getSelectOptionsFor("how_did_you_hear_about_us")}
           </Form.Select>
           <Form.Control.Feedback type="invalid">
             {t("contact.error_how-did-you-hear")}

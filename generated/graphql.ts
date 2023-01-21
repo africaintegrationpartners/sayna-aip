@@ -74,6 +74,47 @@ export type BooleanFilter = {
   neq?: InputMaybe<Scalars['Boolean']>;
 };
 
+export type Contact = Document & {
+  __typename?: 'Contact';
+  /** Date the document was created */
+  _createdAt?: Maybe<Scalars['DateTime']>;
+  /** Document ID */
+  _id?: Maybe<Scalars['ID']>;
+  _key?: Maybe<Scalars['String']>;
+  /** Current document revision */
+  _rev?: Maybe<Scalars['String']>;
+  /** Document type */
+  _type?: Maybe<Scalars['String']>;
+  /** Date the document was last modified */
+  _updatedAt?: Maybe<Scalars['DateTime']>;
+  how_did_you_hear_about_us?: Maybe<Array<Maybe<Scalars['String']>>>;
+  profile?: Maybe<Array<Maybe<Scalars['String']>>>;
+  socials?: Maybe<Socials>;
+  topic?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type ContactFilter = {
+  /** Apply filters on document level */
+  _?: InputMaybe<Sanity_DocumentFilter>;
+  _createdAt?: InputMaybe<DatetimeFilter>;
+  _id?: InputMaybe<IdFilter>;
+  _key?: InputMaybe<StringFilter>;
+  _rev?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  _updatedAt?: InputMaybe<DatetimeFilter>;
+  socials?: InputMaybe<SocialsFilter>;
+};
+
+export type ContactSorting = {
+  _createdAt?: InputMaybe<SortOrder>;
+  _id?: InputMaybe<SortOrder>;
+  _key?: InputMaybe<SortOrder>;
+  _rev?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  _updatedAt?: InputMaybe<SortOrder>;
+  socials?: InputMaybe<SocialsSorting>;
+};
+
 export type DateFilter = {
   /** Checks if the value is equal to the given input. */
   eq?: InputMaybe<Scalars['Date']>;
@@ -417,6 +458,7 @@ export type ProgramsSorting = {
 export type RootQuery = {
   __typename?: 'RootQuery';
   About?: Maybe<About>;
+  Contact?: Maybe<Contact>;
   Document?: Maybe<Document>;
   Home?: Maybe<Home>;
   Programs?: Maybe<Programs>;
@@ -424,6 +466,7 @@ export type RootQuery = {
   SanityImageAsset?: Maybe<SanityImageAsset>;
   Solutions?: Maybe<Solutions>;
   allAbout: Array<About>;
+  allContact: Array<Contact>;
   allDocument: Array<Document>;
   allHome: Array<Home>;
   allPrograms: Array<Programs>;
@@ -434,6 +477,11 @@ export type RootQuery = {
 
 
 export type RootQueryAboutArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type RootQueryContactArgs = {
   id: Scalars['ID'];
 };
 
@@ -473,6 +521,14 @@ export type RootQueryAllAboutArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   sort?: InputMaybe<Array<AboutSorting>>;
   where?: InputMaybe<AboutFilter>;
+};
+
+
+export type RootQueryAllContactArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<Array<ContactSorting>>;
+  where?: InputMaybe<ContactFilter>;
 };
 
 
@@ -917,6 +973,34 @@ export type SlugSorting = {
   source?: InputMaybe<SortOrder>;
 };
 
+export type Socials = {
+  __typename?: 'Socials';
+  _key?: Maybe<Scalars['String']>;
+  _type?: Maybe<Scalars['String']>;
+  facebook?: Maybe<Scalars['String']>;
+  linkedin?: Maybe<Scalars['String']>;
+  twitter?: Maybe<Scalars['String']>;
+  whatsapp?: Maybe<Scalars['String']>;
+};
+
+export type SocialsFilter = {
+  _key?: InputMaybe<StringFilter>;
+  _type?: InputMaybe<StringFilter>;
+  facebook?: InputMaybe<StringFilter>;
+  linkedin?: InputMaybe<StringFilter>;
+  twitter?: InputMaybe<StringFilter>;
+  whatsapp?: InputMaybe<StringFilter>;
+};
+
+export type SocialsSorting = {
+  _key?: InputMaybe<SortOrder>;
+  _type?: InputMaybe<SortOrder>;
+  facebook?: InputMaybe<SortOrder>;
+  linkedin?: InputMaybe<SortOrder>;
+  twitter?: InputMaybe<SortOrder>;
+  whatsapp?: InputMaybe<SortOrder>;
+};
+
 export type Solutions = Document & {
   __typename?: 'Solutions';
   /** Date the document was created */
@@ -988,6 +1072,11 @@ export type GetAboutContentQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAboutContentQuery = { __typename?: 'RootQuery', data: Array<{ __typename?: 'About', _id?: string | null, intro?: { __typename?: 'ParagraphWithHeading', heading?: string | null, content?: string | null } | null, ideals?: Array<{ __typename?: 'ParagraphWithHeading', heading?: string | null, content?: string | null } | null> | null, services?: Array<{ __typename?: 'ParagraphWithHeading', heading?: string | null, content?: string | null } | null> | null }> };
 
+export type GetContactContentQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetContactContentQuery = { __typename?: 'RootQuery', data: Array<{ __typename?: 'Contact', _id?: string | null, profile?: Array<string | null> | null, topic?: Array<string | null> | null, how_did_you_hear_about_us?: Array<string | null> | null }> };
+
 export type GetHomeContentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -998,6 +1087,11 @@ export type GetProgramsContentQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetProgramsContentQuery = { __typename?: 'RootQuery', data: Array<{ __typename?: 'Programs', _id?: string | null, programs_heading?: string | null, programs?: Array<{ __typename?: 'ProgramsGroup', group_name?: string | null, groups?: Array<{ __typename?: 'ParagraphWithHeading', heading?: string | null, content?: string | null } | null> | null } | null> | null }> };
 
+export type GetSocialLinksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSocialLinksQuery = { __typename?: 'RootQuery', data: Array<{ __typename?: 'Contact', _id?: string | null, socials?: { __typename?: 'Socials', facebook?: string | null, linkedin?: string | null, twitter?: string | null, whatsapp?: string | null } | null }> };
+
 export type GetSolutionsContentQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1005,6 +1099,8 @@ export type GetSolutionsContentQuery = { __typename?: 'RootQuery', data: Array<{
 
 
 export const GetAboutContentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getAboutContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"allAbout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","alias":{"kind":"Name","value":"intro"},"name":{"kind":"Name","value":"part_1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"ideals"},"name":{"kind":"Name","value":"part_3"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"services"},"name":{"kind":"Name","value":"about_services"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}}]}}]}}]} as unknown as DocumentNode<GetAboutContentQuery, GetAboutContentQueryVariables>;
+export const GetContactContentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContactContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"allContact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"profile"}},{"kind":"Field","name":{"kind":"Name","value":"topic"}},{"kind":"Field","name":{"kind":"Name","value":"how_did_you_hear_about_us"}}]}}]}}]} as unknown as DocumentNode<GetContactContentQuery, GetContactContentQueryVariables>;
 export const GetHomeContentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getHomeContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"allHome"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"home__header"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hero"}},{"kind":"Field","name":{"kind":"Name","value":"hero_questions"}}]}},{"kind":"Field","name":{"kind":"Name","value":"part_1"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","name":{"kind":"Name","value":"part_2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","name":{"kind":"Name","value":"part_3"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","name":{"kind":"Name","value":"part_4"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"list"}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeContentQuery, GetHomeContentQueryVariables>;
 export const GetProgramsContentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getProgramsContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"allPrograms"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"programs_heading"}},{"kind":"Field","name":{"kind":"Name","value":"programs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"groups"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","name":{"kind":"Name","value":"group_name"}}]}}]}}]}}]} as unknown as DocumentNode<GetProgramsContentQuery, GetProgramsContentQueryVariables>;
+export const GetSocialLinksDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSocialLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"allContact"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"socials"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"facebook"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"whatsapp"}}]}}]}}]}}]} as unknown as DocumentNode<GetSocialLinksQuery, GetSocialLinksQueryVariables>;
 export const GetSolutionsContentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getSolutionsContent"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"allSolutions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_id"}},{"kind":"Field","name":{"kind":"Name","value":"solutions_heading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","name":{"kind":"Name","value":"solutions_services"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"}}]}},{"kind":"Field","name":{"kind":"Name","value":"solutions_sectors"}}]}}]}}]} as unknown as DocumentNode<GetSolutionsContentQuery, GetSolutionsContentQueryVariables>;

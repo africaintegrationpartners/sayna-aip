@@ -2,7 +2,7 @@ import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import FormSuccess from "../components/Contact/FormSuccess";
 import { useTranslation } from "../hooks";
-import { withLocalTranslation } from "../services/translation";
+import { withGetStaticProps } from "../services/utils";
 import { AboutContent, PageProps } from "../types";
 
 const About: NextPage<PageProps<AboutContent>> = (props) => {
@@ -20,11 +20,8 @@ const About: NextPage<PageProps<AboutContent>> = (props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const defaultLocale = "en";
-  const { locale = defaultLocale } = context;
-  const props = await withLocalTranslation(locale, null);
-  return { props };
+export const getStaticProps: GetStaticProps = (context) => {
+  return withGetStaticProps(context);
 };
 
 export default About;

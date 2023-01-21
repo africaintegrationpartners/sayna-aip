@@ -1,5 +1,5 @@
 import { HasOptionalId, WithGetStaticProps } from "../types";
-import { withLocalTranslation } from "./translation";
+import { getLocalTranslation } from "./translation";
 
 export const getSingleContentFilterByLocale = <T extends HasOptionalId>(
   data: T[],
@@ -33,9 +33,15 @@ const getRevalidateInterval = () => {
 export const withGetStaticProps: WithGetStaticProps = async (context, fn) => {
   const defaultLocale = "en";
   const { locale = defaultLocale } = context;
-  const data = await (fn ? fn() : Promise.resolve([]));
-  const content = getSingleContentFilterByLocale(data, locale);
-  const props = await withLocalTranslation(locale, content);
+  const rawData = await (fn ? fn() : Promise.resolve([]));
+  const content = getSingleContentFilterByLocale(rawData, locale);
+  const localTranslation = await getLocalTranslation(locale);
 
-  return { props, revalidate: getRevalidateInterval() };
+  return {
+    props: {
+      ...localTranslation,
+      data: content,
+    },
+    revalidate: getRevalidateInterval(),
+  };
 };
