@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Button from "../ui/Button";
 import Form from "react-bootstrap/Form";
 import { useTranslation } from "../../hooks";
@@ -12,6 +12,39 @@ const FormContact = () => {
   const t = useTranslation();
   const [validated, setValidated] = useState(false);
 
+  const phoneInputRef = useRef<any>(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  useEffect(() => {
+    const phoneInput = phoneInputRef.current as HTMLInputElement;
+    if (!phoneInput) return;
+
+    phoneInput.classList.add("form-control");
+
+    const feedbackElt = document.createElement("div");
+    feedbackElt.textContent = t("contact.error_phone");
+    feedbackElt.classList.add("invalid-feedback");
+    phoneInput.parentElement?.appendChild(feedbackElt);
+
+    return () => {
+      try {
+        phoneInput.parentElement?.removeChild(feedbackElt);
+      } catch (err) {
+        console.warn(err);
+      }
+    };
+  }, [t]);
+
+  const validateInputTel = useCallback((val: E164Number) => {
+    if (isPossiblePhoneNumber(val)) {
+      phoneInputRef.current?.classList.remove("is-invalid");
+      phoneInputRef.current?.classList.add("is-valid");
+    } else {
+      phoneInputRef.current?.classList.remove("is-valid");
+      phoneInputRef.current?.classList.add("is-invalid");
+    }
+  }, []);
+
   const handleSubmit = (event: any) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -20,12 +53,25 @@ const FormContact = () => {
     }
 
     setValidated(true);
+
+    const val = phoneInputRef.current?.value ?? "";
+    validateInputTel(val);
   };
 
-  const [value, setValue] = useState<E164Number | undefined>();
+  const [value, setValue] = useState<E164Number>("");
+
+  const onPhoneInputChange = (val: E164Number) => {
+    setValue(() => val);
+  };
+
+  useEffect(() => {
+    if (formRef.current?.classList.contains("was-validated"))
+      validateInputTel(value ?? "");
+  }, [value, validateInputTel]);
 
   return (
     <Form
+      ref={formRef}
       noValidate
       validated={validated}
       onSubmit={handleSubmit}
@@ -38,23 +84,7 @@ const FormContact = () => {
       encType="multipart/form-data"
     >
       <input type="hidden" name="form-name" value="query" />
-      <PhoneInput
-        placeholder="Enter phone number"
-        value={value}
-        onChange={setValue}
-        countries={["BJ", "CI", "TG"]}
-        international
-        countryCallingCodeEditable={false}
-        defaultCountry="CI"
-        error={
-          value
-            ? isPossiblePhoneNumber(value)
-              ? undefined
-              : "Invalid phone number"
-            : "Phone number required"
-        }
-        className="form-cotrol"
-      />
+
       <div className="d-flex justify-content-between">
         <Form.Group className="mb-3" controlId="name" style={{ width: "48%" }}>
           <Form.Label>{t("contact.prompt_name")}</Form.Label>
@@ -63,6 +93,7 @@ const FormContact = () => {
             type="text"
             placeholder={t("contact.placeholder_name")}
             required
+            isInvalid={false}
           />
           <Form.Control.Feedback type="invalid">
             {t("contact.error_name")}
@@ -87,17 +118,18 @@ const FormContact = () => {
       </div>
 
       <div className="d-flex justify-content-between">
-        <Form.Group style={{ width: "48%" }} className="mb-3">
+        <Form.Group style={{ width: "48%" }} className="mb-3 ">
           <Form.Label>{t("contact.prompt_phone")}</Form.Label>
-          <Form.Control
-            name="tel"
-            type="tel"
-            placeholder={t("contact.placeholder_phone")}
-            required
+          <PhoneInput
+            value={value}
+            onChange={onPhoneInputChange}
+            countries={["CI", "BJ", "TG"]}
+            international
+            countryCallingCodeEditable={false}
+            defaultCountry="CI"
+            ref={phoneInputRef}
+            className={classes.phoneInput}
           />
-          <Form.Control.Feedback type="invalid">
-            {t("contact.error_phone")}
-          </Form.Control.Feedback>
         </Form.Group>
         <Form.Group style={{ width: "48%" }} className="mb-3" controlId="email">
           <Form.Label>{t("contact.prompt_email")}</Form.Label>
@@ -180,36 +212,23 @@ const FormContact = () => {
         </Form.Group>
 
         <Form.Group style={{ width: "48%" }} className="mb-3">
-          <Form.Label>{t("contact.prompt_country")}</Form.Label>
-          <Form.Select required name="pays">
+          <Form.Label>{t("contact.prompt_how-did-you-hear")}</Form.Label>
+          <Form.Select required name="comment-trouver">
             <option></option>
-            <option value="Togo"> Togo</option>
-            <option value="Côte d'Ivoire">Côte d'Ivoire</option>
-            <option value="Benin">Benin</option>
+            <option value="SMS / E-mailing">SMS / E-mailing</option>
+            <option value="Seminar">{t("contact.seminar")}</option>
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Twitter">Twitter</option>
+            <option value="Written Press">{t("contact.written-press")}</option>
+            <option value="Other">{t("contact.other")}</option>
           </Form.Select>
           <Form.Control.Feedback type="invalid">
-            {t("contact.error_country")}
+            {t("contact.error_how-did-you-hear")}
           </Form.Control.Feedback>
         </Form.Group>
       </div>
-
-      <Form.Group className="mb-3">
-        <Form.Label>{t("contact.prompt_how-did-you-hear")}</Form.Label>
-        <Form.Select required name="comment-trouver">
-          <option></option>
-          <option value="SMS / E-mailing">SMS / E-mailing</option>
-          <option value="Seminar">{t("contact.seminar")}</option>
-          <option value="LinkedIn">LinkedIn</option>
-          <option value="Instagram">Instagram</option>
-          <option value="Facebook">Facebook</option>
-          <option value="Twitter">Twitter</option>
-          <option value="Written Press">{t("contact.written-press")}</option>
-          <option value="Other">{t("contact.other")}</option>
-        </Form.Select>
-        <Form.Control.Feedback type="invalid">
-          {t("contact.error_how-did-you-hear")}
-        </Form.Control.Feedback>
-      </Form.Group>
 
       <Form.Group className="mb-3" controlId="message">
         <Form.Label>{t("contact.prompt_message")}</Form.Label>

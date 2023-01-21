@@ -1,5 +1,5 @@
 .container {
-  padding-top: 30vh;
+  padding-top: 130px;
 }
 
 .img {
@@ -13,7 +13,6 @@
 
 .tabWrapper {
   max-width: 600px;
-  /* margin: 0 auto 8rem auto; */
 }
 
 .tabWrapper li {
@@ -51,4 +50,12 @@
 .formSuccessHeader {
   color: var(--clr-primary);
   font-size: 1.7em;
+}
+
+.phoneInput {
+  flex-wrap: wrap;
+}
+
+.phoneInput div.invalid-feedback {
+  flex: 1 0 100%;
 }
