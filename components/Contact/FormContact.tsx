@@ -20,6 +20,7 @@ const FormContact = () => {
     if (!phoneInput) return;
 
     phoneInput.classList.add("form-control");
+    phoneInput.setAttribute("name", "telephone");
 
     const feedbackElt = document.createElement("div");
     feedbackElt.textContent = t("contact.error_phone");
