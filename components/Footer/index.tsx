@@ -4,35 +4,48 @@ import Image from "next/image";
 import classes from "./style.module.css";
 import { useTranslation } from "../../hooks";
 import { useMemo } from "react";
+import { useSocialLinksContext } from "../../contexts/socialLinks";
 
 const isStoriesPageDisabled =
   process.env.NEXT_PUBLIC_ENABLE_STORIES === "false";
 
-const socials = [
-  {
-    icon: "/images/facebook.svg",
-    alt: "facebook icon",
-    href: "https://facebook.com",
-  },
-  {
-    icon: "/images/linkedin.svg",
-    alt: "linkedin icon",
-    href: "https://linkedin.com",
-  },
-  {
-    icon: "/images/twitter.svg",
-    alt: "twitter icon",
-    href: "https://twitter.com",
-  },
-  {
-    icon: "/images/whatsapp.svg",
-    alt: "whatsapp icon",
-    href: "https://whatsapp.com",
-  },
-];
+type Social = {
+  href: string;
+  icon: string;
+  alt: string;
+};
+
+const buildSocialDataFrom = (name: string, href: string): Social => {
+  return {
+    icon: `/images/${name.toLowerCase()}.svg`,
+    alt: `${name} icon`,
+    href: href,
+  };
+};
+
+const buildSocialElementFrom = (social: Social) => (
+  <a
+    key={social.href}
+    className="mx-2"
+    href={social.href}
+    target="_blank"
+    rel="noreferrer"
+  >
+    <Image src={social.icon} alt={social.alt} width={20} height={20} />
+  </a>
+);
 
 const Footer = () => {
   const t = useTranslation();
+  const socialLinks = useSocialLinksContext().socials ?? {};
+  const renderSocials = useMemo(
+    () =>
+      Object.entries(socialLinks)
+        .filter(([key]) => !key.startsWith("_")) // remove metadata
+        .map(([name, href]) => buildSocialDataFrom(name, href ?? ""))
+        .map((social) => buildSocialElementFrom(social)),
+    [socialLinks]
+  );
 
   const links = useMemo(
     () => [
@@ -49,18 +62,6 @@ const Footer = () => {
     ],
     [t]
   );
-
-  const renderSocials = socials.map((social) => (
-    <a
-      key={social.href}
-      className="mx-2"
-      href={social.href}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <Image src={social.icon} alt={social.alt} width={20} height={20} />
-    </a>
-  ));
 
   const renderLinks = links
     .filter((link) => !link.isDisabled)

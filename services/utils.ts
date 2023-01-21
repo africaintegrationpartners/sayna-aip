@@ -1,4 +1,5 @@
 import { HasOptionalId, WithGetStaticProps } from "../types";
+import { getSocialLinks } from "./socialLinks";
 import { getLocalTranslation } from "./translation";
 
 export const getSingleContentFilterByLocale = <T extends HasOptionalId>(
@@ -25,7 +26,7 @@ const getRevalidateInterval = () => {
 };
 
 /**
- * used to fetch common data for all pages, giving the posibility to page specific data
+ * used to fetch common data for all pages, giving the posibility to return page specific data
  * @param context
  * @param fn
  * @returns
@@ -33,14 +34,21 @@ const getRevalidateInterval = () => {
 export const withGetStaticProps: WithGetStaticProps = async (context, fn) => {
   const defaultLocale = "en";
   const { locale = defaultLocale } = context;
-  const rawData = await (fn ? fn() : Promise.resolve([]));
-  const content = getSingleContentFilterByLocale(rawData, locale);
+  const fetchData = () => (fn ? fn() : Promise.resolve([]));
+
+  const content = await fetchData().then((rawData) =>
+    getSingleContentFilterByLocale(rawData, locale)
+  );
   const localTranslation = await getLocalTranslation(locale);
+  const socialLinks = await getSocialLinks().then((links) =>
+    getSingleContentFilterByLocale(links, locale)
+  );
 
   return {
     props: {
       ...localTranslation,
       data: content,
+      socialLinks,
     },
     revalidate: getRevalidateInterval(),
   };

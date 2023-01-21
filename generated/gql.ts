@@ -15,9 +15,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  query getAboutContent {\n    data: allAbout {\n      _id\n      intro: part_1 {\n        heading\n        content\n      }\n      ideals: part_3 {\n        heading\n        content\n      }\n      services: about_services {\n        heading\n        content\n      }\n    }\n  }\n": types.GetAboutContentDocument,
     "\n  query getContactContent {\n    data: allContact {\n      _id\n      profile\n      topic\n      how_did_you_hear_about_us\n    }\n  }\n": types.GetContactContentDocument,
+    "\n  query getSocialLinks {\n    data: allContact {\n      _id\n      socials {\n        facebook\n        linkedin\n        twitter\n        whatsapp\n      }\n    }\n  }\n": types.GetSocialLinksDocument,
     "\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n": types.GetHomeContentDocument,
     "\n  query getProgramsContent {\n    data: allPrograms {\n      _id\n      programs_heading\n      programs {\n        groups {\n          heading\n          content\n        }\n        group_name\n      }\n    }\n  }\n": types.GetProgramsContentDocument,
-    "\n  query getSocialLinks {\n    data: allContact {\n      _id\n      socials {\n        facebook\n        linkedin\n        twitter\n        whatsapp\n      }\n    }\n  }\n": types.GetSocialLinksDocument,
     "\n  query getSolutionsContent {\n    data: allSolutions {\n      _id\n      solutions_heading {\n        heading\n        content\n      }\n      solutions_services {\n        heading\n        content\n      }\n      solutions_sectors\n    }\n  }\n": types.GetSolutionsContentDocument,
 };
 
@@ -46,15 +46,15 @@ export function graphql(source: "\n  query getContactContent {\n    data: allCon
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  query getSocialLinks {\n    data: allContact {\n      _id\n      socials {\n        facebook\n        linkedin\n        twitter\n        whatsapp\n      }\n    }\n  }\n"): (typeof documents)["\n  query getSocialLinks {\n    data: allContact {\n      _id\n      socials {\n        facebook\n        linkedin\n        twitter\n        whatsapp\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n"): (typeof documents)["\n  query getHomeContent {\n    data: allHome {\n      _id\n      home__header {\n        hero\n        hero_questions\n      }\n      part_1 {\n        heading\n        content\n      }\n      part_2 {\n        heading\n        content\n      }\n      part_3 {\n        heading\n        content\n      }\n      part_4 {\n        heading\n        content\n        list\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query getProgramsContent {\n    data: allPrograms {\n      _id\n      programs_heading\n      programs {\n        groups {\n          heading\n          content\n        }\n        group_name\n      }\n    }\n  }\n"): (typeof documents)["\n  query getProgramsContent {\n    data: allPrograms {\n      _id\n      programs_heading\n      programs {\n        groups {\n          heading\n          content\n        }\n        group_name\n      }\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(source: "\n  query getSocialLinks {\n    data: allContact {\n      _id\n      socials {\n        facebook\n        linkedin\n        twitter\n        whatsapp\n      }\n    }\n  }\n"): (typeof documents)["\n  query getSocialLinks {\n    data: allContact {\n      _id\n      socials {\n        facebook\n        linkedin\n        twitter\n        whatsapp\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

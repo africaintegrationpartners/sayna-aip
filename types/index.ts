@@ -6,6 +6,7 @@ import {
   GetContactContentQuery,
   GetHomeContentQuery,
   GetProgramsContentQuery,
+  GetSocialLinksQuery,
   GetSolutionsContentQuery,
 } from "../generated/graphql";
 
@@ -19,6 +20,7 @@ export type AboutContent = Unpacked<GetAboutContentQuery["data"]>;
 export type SolutionsContent = Unpacked<GetSolutionsContentQuery["data"]>;
 export type ProgramsContent = Unpacked<GetProgramsContentQuery["data"]>;
 export type ContactContent = Unpacked<GetContactContentQuery["data"]>;
+export type SocialLinks = Unpacked<GetSocialLinksQuery["data"]>;
 
 export type Maybe<T> = T | null | undefined;
 

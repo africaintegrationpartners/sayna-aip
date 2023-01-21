@@ -18,6 +18,7 @@ import nextI18NextConfig from "../next-i18next.config.js";
 import "../setup/progress/style.css";
 import { setupNavProgress } from "../setup/progress";
 import ErrorBoundary from "../components/ErrorBoundary";
+import { SocialLinksContextProvider } from "../contexts/socialLinks";
 
 setupNavProgress();
 
@@ -30,11 +31,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <SSRProvider>
-        <Layout>
-          <ErrorBoundary>
-            <Component {...pageProps} />
-          </ErrorBoundary>
-        </Layout>
+        <ErrorBoundary>
+          <SocialLinksContextProvider value={pageProps["socialLinks"]}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </SocialLinksContextProvider>
+        </ErrorBoundary>
       </SSRProvider>
     </>
   );
