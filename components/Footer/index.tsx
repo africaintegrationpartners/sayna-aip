@@ -37,10 +37,10 @@ const buildSocialElementFrom = (social: Social) => (
 
 const Footer = () => {
   const t = useTranslation();
-  const socialLinks = useSocialLinksContext().socials ?? {};
+  const socialLinks = useSocialLinksContext().socials;
   const renderSocials = useMemo(
     () =>
-      Object.entries(socialLinks)
+      Object.entries(socialLinks ?? {})
         .filter(([key]) => !key.startsWith("_")) // remove metadata
         .map(([name, href]) => buildSocialDataFrom(name, href ?? ""))
         .map((social) => buildSocialElementFrom(social)),
