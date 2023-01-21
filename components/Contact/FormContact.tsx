@@ -75,7 +75,7 @@ const FormContact = () => {
       noValidate
       validated={validated}
       onSubmit={handleSubmit}
-      name="query"
+      name="Contact Us"
       method="POST"
       action="/form"
       data-netlify="true"
@@ -83,7 +83,7 @@ const FormContact = () => {
       className={classes.form}
       encType="multipart/form-data"
     >
-      <input type="hidden" name="form-name" value="query" />
+      <input type="hidden" name="form-name" value="Contact Us" />
 
       <div className="d-flex justify-content-between">
         <Form.Group className="mb-3" controlId="name" style={{ width: "48%" }}>

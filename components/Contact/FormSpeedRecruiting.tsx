@@ -8,7 +8,7 @@ const FormSpeedRecruiting = () => {
 
   return (
     <Form
-      name="speed-recruiting"
+      name="Employees & Consultants"
       method="POST"
       data-netlify="true"
       data-netlify-honeypot="bot-field"
@@ -16,7 +16,7 @@ const FormSpeedRecruiting = () => {
       className={classes.form}
       action="/form"
     >
-      <input type="hidden" name="form-name" value="speed-recruiting" />
+      <input type="hidden" name="form-name" value="Employees & Consultants" />
 
       <Form.Group controlId="formFile" className="mb-4">
         <Form.Label>{t("contact.prompt_cv")}</Form.Label>
