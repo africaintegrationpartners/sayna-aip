@@ -20,13 +20,13 @@ const FormSpeedRecruiting = () => {
 
       <Form.Group controlId="formFile" className="mb-4">
         <Form.Label>{t("contact.prompt_cv")}</Form.Label>
-        <Form.Control name="cv" type="file" required accept="image/*, .pdf" />
+        <Form.Control name="CV" type="file" required accept="image/*, .pdf" />
         <Form.Text>{t("contact.info_file-upload")}</Form.Text>
       </Form.Group>
 
       <Form.Group controlId="formFile" className="mb-4">
         <Form.Label>{t("contact.prompt_cover-letter")}</Form.Label>
-        <Form.Control name="lm" type="file" accept="image/*, .pdf" />
+        <Form.Control name="Cover letter" type="file" accept="image/*, .pdf" />
         <Form.Text>{t("contact.info_file-upload")}</Form.Text>
       </Form.Group>
 

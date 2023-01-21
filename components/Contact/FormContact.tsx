@@ -20,7 +20,6 @@ const FormContact = () => {
     if (!phoneInput) return;
 
     phoneInput.classList.add("form-control");
-    phoneInput.setAttribute("name", "telephone");
 
     const feedbackElt = document.createElement("div");
     feedbackElt.textContent = t("contact.error_phone");
@@ -131,6 +130,14 @@ const FormContact = () => {
             ref={phoneInputRef}
             className={classes.phoneInput}
           />
+          {/* workaround to be able to submit phone number */}
+          <input
+            readOnly
+            type="tel"
+            className="d-none"
+            name="telephone"
+            value={value}
+          />
         </Form.Group>
         <Form.Group style={{ width: "48%" }} className="mb-3" controlId="email">
           <Form.Label>{t("contact.prompt_email")}</Form.Label>
@@ -151,7 +158,7 @@ const FormContact = () => {
           <Form.Label>{t("contact.prompt_company")}</Form.Label>
           <Form.Control
             required
-            name="société"
+            name="Company"
             type="text"
             placeholder={t("contact.placeholder_company")}
           />
@@ -162,7 +169,7 @@ const FormContact = () => {
 
         <Form.Group className="mb-3" style={{ width: "48%" }}>
           <Form.Label>{t("contact.prompt_profile")}</Form.Label>
-          <Form.Select required name="fonction">
+          <Form.Select required name="Profile">
             <option></option>
             <option value="Funders">{t("contact.funders")}</option>
             <option value="State representative">
@@ -189,7 +196,7 @@ const FormContact = () => {
       <div className="d-flex justify-content-between">
         <Form.Group style={{ width: "48%" }} className="mb-3">
           <Form.Label>{t("contact.prompt_topic")}</Form.Label>
-          <Form.Select required name="sujet">
+          <Form.Select required name="Topic">
             <option></option>
             <option value="SME programs">{t("contact.program-sme")}</option>
             <option value="Young entrepreneur programs">
@@ -214,7 +221,7 @@ const FormContact = () => {
 
         <Form.Group style={{ width: "48%" }} className="mb-3">
           <Form.Label>{t("contact.prompt_how-did-you-hear")}</Form.Label>
-          <Form.Select required name="comment-trouver">
+          <Form.Select required name="How did you hear">
             <option></option>
             <option value="SMS / E-mailing">SMS / E-mailing</option>
             <option value="Seminar">{t("contact.seminar")}</option>
@@ -234,7 +241,7 @@ const FormContact = () => {
       <Form.Group className="mb-3" controlId="message">
         <Form.Label>{t("contact.prompt_message")}</Form.Label>
         <Form.Control
-          name="message"
+          name="Message"
           type="text"
           placeholder={t("contact.placeholder_message")}
           as="textarea"
