@@ -57,6 +57,7 @@ const TopNavbar = () => {
     const locale = e.target.value;
     setCookie(locale);
     router.push(router.asPath, undefined, { locale });
+    onLinkClick();
   };
 
   return (
