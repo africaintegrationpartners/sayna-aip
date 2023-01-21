@@ -37,7 +37,7 @@ const buildSocialElementFrom = (social: Social) => (
 
 const Footer = () => {
   const t = useTranslation();
-  const socialLinks = useSocialLinksContext().socials;
+  const socialLinks = useSocialLinksContext?.()?.socials;
   const renderSocials = useMemo(
     () =>
       Object.entries(socialLinks ?? {})

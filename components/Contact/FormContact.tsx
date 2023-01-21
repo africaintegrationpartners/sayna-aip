@@ -8,17 +8,18 @@ import "react-phone-number-input/style.css";
 import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
 import { E164Number } from "libphonenumber-js/types";
 import { useContactContext } from "../../contexts/contact";
+import { ContactContent } from "../../types";
 
 const FormContact = () => {
   const content = useContactContext();
 
   const getSelectOptionsFor = (
-    selector: Exclude<keyof typeof content, "_id" | "__typename">
+    selector: Exclude<keyof ContactContent, "_id" | "__typename">
   ) => {
     return (
       <>
         <option></option>
-        {content[selector]?.map((p, idx) => (
+        {(content?.[selector] as any)?.map((p: any, idx: number) => (
           <option key={idx} value={p ?? ""}>
             {p}
           </option>
