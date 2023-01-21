@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { useNonNullContext } from "../hooks/useNonNullContext";
 import { ContextProviderProps } from "../types";
 
@@ -18,4 +18,20 @@ function createPageContext<T>() {
   return { Context, ContextProvider, useContext };
 }
 
-export { createPageContext };
+function createNullablePageContext<T>() {
+  const Context = createContext<T | null>(null);
+
+  const ContextProvider = (props: ContextProviderProps<T>) => {
+    return (
+      <Context.Provider value={props.value}>{props.children}</Context.Provider>
+    );
+  };
+
+  const useCustomContext = () => {
+    return useContext(Context);
+  };
+
+  return { Context, ContextProvider, useContext: useCustomContext };
+}
+
+export { createPageContext, createNullablePageContext };
