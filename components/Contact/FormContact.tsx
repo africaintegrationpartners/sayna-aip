@@ -48,18 +48,18 @@ const FormContact = () => {
 
     phoneInput.classList.add("form-control");
 
-    // const feedbackElt = document.createElement("div");
-    // feedbackElt.textContent = t("contact.error_phone");
-    // feedbackElt.classList.add("invalid-feedback");
-    // phoneInput.parentElement?.appendChild(feedbackElt);
+    const feedbackElt = document.createElement("div");
+    feedbackElt.textContent = t("contact.error_phone");
+    feedbackElt.classList.add("invalid-feedback");
+    phoneInput.parentElement?.appendChild(feedbackElt);
 
-    // return () => {
-    //   try {
-    //     phoneInput.parentElement?.removeChild(feedbackElt);
-    //   } catch (err) {
-    //     console.warn(err);
-    //   }
-    // };
+    return () => {
+      try {
+        phoneInput.parentElement?.removeChild(feedbackElt);
+      } catch (err) {
+        console.warn(err);
+      }
+    };
   }, [t]);
 
   const validatePhoneNumber = useCallback((val: E164Number) => {
@@ -97,10 +97,10 @@ const FormContact = () => {
       noValidate
       validated={validated}
       onSubmit={handleSubmit}
+      className={classes.form}
       name="Contact Us"
       method="POST"
-      action="/noop.html"
-      className={classes.form}
+      action="/confirmation.html"
       encType="multipart/form-data"
     >
       <input type="hidden" name="form-name" value="Contact Us" />

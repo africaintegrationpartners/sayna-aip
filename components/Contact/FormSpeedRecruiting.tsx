@@ -9,12 +9,10 @@ const FormSpeedRecruiting = () => {
   return (
     <Form
       name="Employees & Consultants"
-      method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
       encType="multipart/form-data"
       className={classes.form}
-      action="/form"
+      method="POST"
+      action="/confirmation.html"
     >
       <input type="hidden" name="form-name" value="Employees & Consultants" />
 

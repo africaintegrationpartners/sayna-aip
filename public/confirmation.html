@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirmation | AIP</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      :root {
+        overflow: hidden;
+      }
+      .container {
+        background: #fff;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+      }
+      .card {
+        width: 20rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        padding: 2.5rem 2.5rem;
+        border-radius: 5px;
+        border: 1px solid #f1f1f1;
+      }
+      .card h5 {
+        color: #f4b814;
+        font-size: 1.7em;
+        margin: 0 0 0.4rem 0;
+      }
+      .card p {
+        margin: 0 0 1.5rem 0;
+      }
+      .card a::first-letter {
+        text-transform: capitalize;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- A little help for the Netlify bots to process form successfully  -->
+    <form
+      name="Contact Us"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="text" name="Name" />
+      <input type="text" name="First name" />
+      <input type="tel" name="Telephone" />
+      <input type="email" name="Email" />
+      <input type="text" name="Company" />
+      <select name="Profile"></select>
+      <select name="Topic"></select>
+      <select name="How did you hear"></select>
+      <textarea name="Message"></textarea>
+      <input type="file" name="Attachment" />
+    </form>
+    <form
+      name="Employees & Consultants"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="file" name="CV" />
+      <input type="file" name="Cover letter" />
+    </form>
+
+    <div class="container">
+      <div class="card">
+        <h5>Merci!</h5>
+        <p>Votre information a été soumise avec succès.</p>
+        <a href="/"> Page d'acceuil </a>
+      </div>
+    </div>
+
+    <script>
+      var texts = {
+        en: {
+          title: "Thank you!",
+          para: "Your information has been submitted successfully.",
+          cta: "Back to homepage",
+        },
+      };
+      var LOCALE_KEY = "NEXT_LOCALE";
+
+      var locale = parseCookie(document.cookie)[LOCALE_KEY];
+
+      var textLocalized = texts[locale];
+      if (textLocalized) {
+        document.querySelector(".card h5").textContent = textLocalized.title;
+        document.querySelector(".card p").textContent = textLocalized.para;
+        document.querySelector(".card a").textContent = textLocalized.cta;
+      }
+
+      function parseCookie(cookie) {
+        return cookie
+          .split(";")
+          .map(function (v) {
+            return v.split("=");
+          })
+          .reduce(function (acc, v) {
+            acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+              v[1].trim()
+            );
+            return acc;
+          }, {});
+      }
+    </script>
+  </body>
+</html>
