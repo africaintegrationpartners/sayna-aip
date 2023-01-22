@@ -99,7 +99,7 @@ const FormContact = () => {
       onSubmit={handleSubmit}
       name="Contact Us"
       method="POST"
-      action="/form"
+      action="/noop.html"
       className={classes.form}
       encType="multipart/form-data"
     >
