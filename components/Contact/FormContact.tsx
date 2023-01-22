@@ -86,6 +86,10 @@ const FormContact = () => {
       event.stopPropagation();
     }
 
+    const data = new FormData(form);
+    console.log({ data });
+    alert("hello");
+
     setValidated(true);
 
     const val = phoneInputRef.current?.value ?? "";
@@ -100,8 +104,6 @@ const FormContact = () => {
       name="Contact Us"
       method="POST"
       action="/form"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
       className={classes.form}
       encType="multipart/form-data"
     >

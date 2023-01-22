@@ -8,6 +8,24 @@ const FormSuccess = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
+      {/* A little help for the Netlify bots if you're not using a SSG  */}
+      <form
+        name="Contact Us"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        hidden
+      >
+        <input type="text" name="Name" />
+        <input type="text" name="First name" />
+        <input type="tel" name="Telephone" />
+        <input type="email" name="Email" />
+        <input type="text" name="Company" />
+        <select name="Profile"></select>
+        <select name="Topic"></select>
+        <select name="How did you hear"></select>
+        <textarea name="Message"></textarea>
+        <input type="file" name="Attachment" />
+      </form>
       <Card style={{ width: "20rem" }} className="p-4 shadow">
         <Card.Body>
           <Card.Title className={`${classes.formSuccessHeader}`}>
