@@ -81,15 +81,14 @@ const FormContact = () => {
   // SUBMIT FORM
   const handleSubmit = (event: any) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    setValidated(true);
+    const val = phoneInputRef.current?.value ?? "";
+    validatePhoneNumber(val);
+
+    if (form.checkValidity() === false || !isPossiblePhoneNumber(val)) {
       event.preventDefault();
       event.stopPropagation();
     }
-
-    setValidated(true);
-
-    const val = phoneInputRef.current?.value ?? "";
-    validatePhoneNumber(val);
   };
   return (
     <Form
