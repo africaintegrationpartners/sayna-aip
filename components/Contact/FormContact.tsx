@@ -48,18 +48,18 @@ const FormContact = () => {
 
     phoneInput.classList.add("form-control");
 
-    const feedbackElt = document.createElement("div");
-    feedbackElt.textContent = t("contact.error_phone");
-    feedbackElt.classList.add("invalid-feedback");
-    phoneInput.parentElement?.appendChild(feedbackElt);
+    // const feedbackElt = document.createElement("div");
+    // feedbackElt.textContent = t("contact.error_phone");
+    // feedbackElt.classList.add("invalid-feedback");
+    // phoneInput.parentElement?.appendChild(feedbackElt);
 
-    return () => {
-      try {
-        phoneInput.parentElement?.removeChild(feedbackElt);
-      } catch (err) {
-        console.warn(err);
-      }
-    };
+    // return () => {
+    //   try {
+    //     phoneInput.parentElement?.removeChild(feedbackElt);
+    //   } catch (err) {
+    //     console.warn(err);
+    //   }
+    // };
   }, [t]);
 
   const validatePhoneNumber = useCallback((val: E164Number) => {
@@ -111,7 +111,7 @@ const FormContact = () => {
         <Form.Group className="mb-3" controlId="name" style={{ width: "48%" }}>
           <Form.Label>{t("contact.prompt_name")}</Form.Label>
           <Form.Control
-            name="nom"
+            name="Name"
             type="text"
             placeholder={t("contact.placeholder_name")}
             required
@@ -128,7 +128,7 @@ const FormContact = () => {
         >
           <Form.Label>{t("contact.prompt_first-name")} </Form.Label>
           <Form.Control
-            name="prénom"
+            name="First name"
             type="text"
             placeholder={t("contact.placeholder_first-name")}
             required
@@ -157,14 +157,14 @@ const FormContact = () => {
             readOnly
             type="tel"
             className="d-none"
-            name="telephone"
+            name="Telephone"
             value={phoneNumber}
           />
         </Form.Group>
         <Form.Group style={{ width: "48%" }} className="mb-3" controlId="email">
           <Form.Label>{t("contact.prompt_email")}</Form.Label>
           <Form.Control
-            name="email"
+            name="Email"
             type="email"
             placeholder={t("contact.placeholder_email")}
             required
@@ -234,7 +234,7 @@ const FormContact = () => {
 
       <Form.Group controlId="formFile" className="mb-4">
         <Form.Label>{t("contact.prompt_attachment")}</Form.Label>
-        <Form.Control name="pj" type="file" accept="image/*, .pdf" />
+        <Form.Control name="Attachment" type="file" accept="image/*, .pdf" />
       </Form.Group>
 
       <Button className="w-100 my-4" type="submit">
