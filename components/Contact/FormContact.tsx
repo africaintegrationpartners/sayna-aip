@@ -86,10 +86,6 @@ const FormContact = () => {
       event.stopPropagation();
     }
 
-    const data = new FormData(form);
-    console.log({ data });
-    alert("hello");
-
     setValidated(true);
 
     const val = phoneInputRef.current?.value ?? "";
