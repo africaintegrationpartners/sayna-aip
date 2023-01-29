@@ -62,7 +62,7 @@ const TopNavbar = () => {
 
   return (
     <Navbar bg="white" expand="lg" className="p-0 fixed-top w-100 shadow">
-      <Container className="py-4">
+      <Container className="py-3">
         <Link href="/" className={classes.logo + " navbar-brand p-0"}>
           <Image
             src="/images/logo-couleur.png"
