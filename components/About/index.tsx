@@ -33,11 +33,15 @@ const About = () => {
         />
       </AnimateOnView>
 
-      <AnimateOnView amount={0.3}>
-        <Ideals ideals={ideals ?? []} />
+      <AnimateOnView amount={0.1}>
+        <AboutTexts />
       </AnimateOnView>
 
-      <AboutTexts />
+      <AnimateOnView amount={0.3}>
+        <div className="mt-5 pt-4">
+          <Ideals ideals={ideals ?? []} type="light" />
+        </div>
+      </AnimateOnView>
 
       {/* <AnimateOnView>
         <PageSectionTitle

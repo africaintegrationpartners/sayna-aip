@@ -4,16 +4,15 @@
 
 .cardTitle {
   font-family: "Lato", serif;
-  font-style: italic;
   color: var(--clr-primary);
   font-weight: 400;
-  font-size: 1.8em;
+  font-size: 1.5em;
 }
 
 .programCard h5 {
   padding: 0.8rem 0.5rem !important;
   margin-bottom: 1.5rem;
-  color: #006ca0;
+  color: var(--clr-secondary);
 }
 
 .allPrograms {
@@ -32,7 +31,7 @@
   top: 0%;
   left: 50%;
   transform: translate(-50%);
-  background: #f7f7f7;
+  background-color: var(--clr-primary);
 }
 
 .programGroupItem {
@@ -47,7 +46,6 @@
   clip-path: polygon(0% 0%, calc(100% - 35px) 0, 100% 35px, 100% 100%, 0% 100%);
 }
 .programGroupItem:hover {
-  border-color: #006ba0;
   transform: rotate(-1deg) scale(1.05);
   clip-path: polygon(0% 0%, 100% 0, 100% 0, 100% 100%, 0% 100%);
 }

@@ -49,11 +49,18 @@
 }
 
 .ideals {
-  background-color: var(--clr-secondary);
   margin-bottom: 6rem;
   padding: 2.5rem 1rem;
   border-radius: 1rem;
 }
+.lightIdeals h3 {
+  color: var(--clr-secondary);
+}
+.darkIdeals {
+  background-color: var(--clr-secondary);
+  color: white;
+}
+
 @media screen and (min-width: 1110px) {
   .ideals {
     padding: 4.4rem 3rem;
@@ -107,4 +114,47 @@
   font-family: "Lato", serif;
   font-style: italic;
   font-weight: 600;
+}
+
+.tabs {
+  background: var(--clr-primary);
+  box-shadow: 0 0 0 100vmax var(--clr-primary);
+  clip-path: inset(0 -100vmax);
+  padding: 4.5rem 0;
+}
+.navPill {
+  border-bottom: 2px solid #51515121;
+  padding-bottom: 1rem;
+}
+
+.navLink {
+  background: transparent !important;
+  color: var(--clr-secondary) !important;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.navLink[aria-selected="true"]::before {
+  content: "";
+  display: inline-block;
+  width: 2em;
+  height: 1.2em;
+  background: url(/images/double-arrow.svg);
+  background-size: 1.8em 1.8em;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: -0.25em;
+  margin-right: 0.2em;
+  margin-left: -0.2em;
+}
+
+@media screen and (min-width: 768px) {
+  .navPill {
+    border: none;
+    border-right: 2px solid #51515121;
+  }
+  .navLink {
+    margin-bottom: 1.8rem;
+    font-size: 1.2rem;
+  }
 }
