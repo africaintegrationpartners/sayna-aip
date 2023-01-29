@@ -88,6 +88,7 @@ const FormContact = () => {
     if (form.checkValidity() === false || !isPossiblePhoneNumber(val)) {
       event.preventDefault();
       event.stopPropagation();
+      window.scrollTo({ top: 0 });
     }
   };
   return (
@@ -142,7 +143,6 @@ const FormContact = () => {
           <PhoneInput
             value={phoneNumber}
             onChange={onPhoneInputChange}
-            countries={["CI", "BJ", "TG"]}
             international
             countryCallingCodeEditable={false}
             defaultCountry="CI"
