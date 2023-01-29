@@ -40,7 +40,7 @@ const AboutTexts = () => {
     return () => setTabKey(key + "");
   };
 
-  const headers = content.services?.map((srv, idx) => (
+  const headers = content?.services?.map((srv, idx) => (
     <Nav.Item key={idx} onMouseEnter={getOnMouseEnterHandler(idx)}>
       <Nav.Link eventKey={idx} className={`${classes.navLink}`}>
         {srv?.heading}
@@ -48,7 +48,7 @@ const AboutTexts = () => {
     </Nav.Item>
   ));
 
-  const details = content.services?.map((srv, idx) => (
+  const details = content?.services?.map((srv, idx) => (
     <Tab.Pane eventKey={idx} key={idx} className="mx-3 mt-4 mt-md-0">
       {srv?.content}
     </Tab.Pane>
