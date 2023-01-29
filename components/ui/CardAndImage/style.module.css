@@ -4,11 +4,11 @@
 }
 
 .cardAndImage h3 {
-  font-family: "Brygada", serif;
+  font-family: "Lato", serif;
   font-style: italic;
   /* color: var(--clr-primary); */
   color: var(--clr-secondary);
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 1.2rem;
 }
 

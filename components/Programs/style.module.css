@@ -3,10 +3,10 @@
 }
 
 .cardTitle {
-  font-family: "Brygada", serif;
+  font-family: "Lato", serif;
   font-style: italic;
   color: var(--clr-primary);
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.8em;
 }
 

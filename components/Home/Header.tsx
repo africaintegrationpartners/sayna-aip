@@ -35,11 +35,13 @@ const Header = () => {
       className={classes.header + " min-vh-100 d-flex align-items-center"}
     >
       <section className={classes.pageTitle}>
-        <h2 className="mb-4 fw-normal">
+        <h1 className={`${classes.headerQuestions} mb-4`}>
           <span ref={questionEltRef}></span>
-        </h2>
+        </h1>
 
-        <h1 className="mb-4">{content?.home__header?.hero}</h1>
+        <h2 className={`${classes.headerTitle} mb-4`}>
+          {content?.home__header?.hero}
+        </h2>
 
         <Button img="/images/arrow-right.svg" href="/solutions">
           {t("cta.our-services")}

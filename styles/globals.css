@@ -1,6 +1,6 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Brygada+1918:ital@1&display=swap"); */
 
-@font-face {
+/* @font-face {
   font-family: "Brygada";
   src: url(/fonts/Brygada-Italic.ttf) format("truetype");
   font-style: italic;
@@ -10,10 +10,30 @@
   font-family: "Brygada";
   src: url(/fonts/Brygada.ttf) format("truetype");
   font-display: swap;
-}
+} */
 @font-face {
   font-family: "Roboto";
   src: url(/fonts/Roboto.ttf) format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url(/fonts/Lato-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url(/fonts/Lato-Italic.ttf) format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lato";
+  src: url(/fonts/Lato-Light.ttf) format("truetype");
+  font-weight: 300;
+  font-style: italic;
   font-display: swap;
 }
 
