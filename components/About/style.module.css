@@ -49,7 +49,6 @@
 }
 
 .ideals {
-  margin-bottom: 6rem;
   padding: 2.5rem 1rem;
   border-radius: 1rem;
 }
@@ -157,4 +156,10 @@
     margin-bottom: 1.8rem;
     font-size: 1.2rem;
   }
+}
+
+.idealWrapper {
+  background: #f7f7f7;
+  box-shadow: 0 0 0 100vmax #f7f7f7;
+  clip-path: inset(0 -100vmax);
 }

@@ -74,7 +74,9 @@ const Main = () => {
         </div>
 
         <AnimateOnView amount={0.3}>
-          <Ideals ideals={ideals ?? []} />
+          <div className={`${classes.idealWrapper}`}>
+            <Ideals ideals={ideals ?? []} />
+          </div>
         </AnimateOnView>
 
         <AnimateOnView>

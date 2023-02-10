@@ -36,9 +36,8 @@ const About = () => {
       <AnimateOnView amount={0.1}>
         <AboutTexts />
       </AnimateOnView>
-
       <AnimateOnView amount={0.3}>
-        <div className="mt-5 pt-4">
+        <div className={`${classes.idealWrapper} mt-5 pb-5`}>
           <Ideals ideals={ideals ?? []} type="light" />
         </div>
       </AnimateOnView>
