@@ -39,7 +39,7 @@ const Header = () => {
           <span ref={questionEltRef}></span>
         </h1>
 
-        <h2 className={`${classes.headerTitle} mb-4`}>
+        <h2 className={`${classes.headerTitle}`}>
           {content?.home__header?.hero}
         </h2>
 

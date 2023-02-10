@@ -16,8 +16,8 @@ type Props = {
 const Ideals = (props: Props) => {
   const { ideals, type = "dark" } = props;
 
-  const renderIdeals = ideals.map((ideal) => (
-    <Col key={ideal.title}>
+  const renderIdeals = ideals.map((ideal, i) => (
+    <Col key={ideal.title} xs={12} md={4} lg={i == 2 ? 3 : 4}>
       <article className={`${classes[`${type}Ideal`]} px-3 mb-5 mb-md-0`}>
         <div className="d-flex gap-3 align-items-center mb-3">
           <Image src={ideal.icon} width="50" height="50" alt={ideal.title} />
@@ -36,9 +36,9 @@ const Ideals = (props: Props) => {
 
   return (
     <Row
-      xs={1}
-      md={3}
-      className={`${classes[`${type}Ideals`]} ${classes.ideals}`}
+      className={`${classes[`${type}Ideals`]} ${
+        classes.ideals
+      } justify-content-lg-between`}
     >
       {renderIdeals}
     </Row>
