@@ -32,11 +32,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script
+        id="ga-script-source"
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
 
-      <Script strategy="lazyOnload">
+      <Script id="ga-script-init" strategy="lazyOnload">
         {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){
