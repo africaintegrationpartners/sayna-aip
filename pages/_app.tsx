@@ -19,6 +19,7 @@ import "../setup/progress/style.css";
 import { setupNavProgress } from "../setup/progress";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { SocialLinksContextProvider } from "../contexts/socialLinks";
+import Script from "next/script";
 
 setupNavProgress();
 
@@ -30,6 +31,23 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
+
+      <Script strategy="lazyOnload">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){
+              dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+        `}
+      </Script>
       <SSRProvider>
         <ErrorBoundary>
           <SocialLinksContextProvider value={pageProps["socialLinks"]}>
